@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         setCurrentFragment(homeFragment)
 
-        bottomNavigationView
+
 
     }
 
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.flFragment, fragment)
             commit()
         }
+
 
 }
 
