@@ -13,6 +13,6 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTask(task: Task)
 
-    @Query("SELECT * FROM task_table WHERE date = :date  ORDER BY  id ASC)
-    fun  readDayTask(date: Date): LiveData<List<Task>>
+    @Query("SELECT * FROM task_table WHERE date = :date  ORDER BY  id ASC")
+    fun  readDayTasks(date: Date): LiveData<List<Task>>
 }
