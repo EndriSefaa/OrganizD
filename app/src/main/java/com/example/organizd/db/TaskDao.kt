@@ -14,5 +14,5 @@ interface TaskDao {
     suspend fun addTask(task: Task)
 
     @Query("SELECT * FROM task_table WHERE date = :date  ORDER BY  id ASC")
-    fun  readDayTasks(date: Date): LiveData<List<Task>>
+    fun  readDayTasks(date: String): LiveData<List<Task>>
 }

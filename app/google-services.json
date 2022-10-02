@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1005162562055",
+    "project_id": "organizd-4bab6",
+    "storage_bucket": "organizd-4bab6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005162562055:android:fda06bbc420d9268a0a0a2",
+        "android_client_info": {
+          "package_name": "com.example.organizd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005162562055-etidgnpimq78d9lcoua7e5rfchenc5cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoXRmjRI7TCOtdlz9uy08srGkG77xnptw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005162562055-etidgnpimq78d9lcoua7e5rfchenc5cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

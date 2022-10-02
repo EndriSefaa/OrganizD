@@ -8,7 +8,7 @@ import java.util.*
 data class Task (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val date :  Date,
+    val date : String,
     val name : String,
-    val completed :  Date
+    val completed :  String
     )
