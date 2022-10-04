@@ -3,10 +3,20 @@ package com.example.organizd
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.RequestManager
+import com.example.organizd.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var glide: RequestManager
 
     lateinit var bottomNav : BottomNavigationView
 
