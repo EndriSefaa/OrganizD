@@ -28,15 +28,6 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
         binding = FragmentTimerBinding.inflate(layoutInflater)
         val view = binding.root
-        return view
-    }
-
-    override fun onViewCreated(view: View , savedInstanceState: Bundle?){
-        super.onViewCreated(view, savedInstanceState)
-        //val info = view.findViewById<ImageView>(R.id.infoIcon)
-
-        //binding = FragmentTimerBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
 
         dataHelper = DataHelper(requireActivity()) // Non posso inserire nelle parentesi (applicationContext) poiché mi trovo in un fragment.
 
@@ -75,6 +66,18 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         binding.infoIcon.setOnClickListener{
             Toast.makeText(this@TimerFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
         }
+
+
+        return view
+    }
+
+    override fun onViewCreated(view: View , savedInstanceState: Bundle?){
+        super.onViewCreated(view, savedInstanceState)
+        //val info = view.findViewById<ImageView>(R.id.infoIcon)
+
+        //binding = FragmentTimerBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
+
 
 
     }
@@ -130,7 +133,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             }
             else
             {
-                dataHelper.setStopTime(Date())
+                dataHelper.setStartTime(Date())
             }
             startTimer()
         }

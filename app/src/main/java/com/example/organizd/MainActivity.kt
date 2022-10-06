@@ -2,21 +2,27 @@ package com.example.organizd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.RequestManager
+
 import com.example.organizd.databinding.ActivityMainBinding
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.MediaMetadata
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
 
-    @Inject
-    lateinit var glide: RequestManager
+class MainActivity : AppCompatActivity(), Player.Listener {
+
+
+
+
+
 
     lateinit var bottomNav : BottomNavigationView
 
@@ -28,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         val calendarFragment = CalendarFragment()
         val timerFragment = TimerFragment()
         val profileFragment = ProfileFragment()
+
+
+
 
         setCurrentFragment(homeFragment)
 
@@ -52,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.flFragment, fragment)
             commit()
         }
+
 
 
 }
