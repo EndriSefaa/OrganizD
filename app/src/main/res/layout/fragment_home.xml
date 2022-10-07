@@ -7,10 +7,25 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tvHomeFragment2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My task"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335" />
+
+    <TextView
         android:id="@+id/tvHomeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
+        android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,32 +37,42 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="402dp"
-        android:layout_height="566dp"
+        android:layout_width="363dp"
+        android:layout_height="340dp"
+        android:background="@drawable/round_corner_task"
+        android:padding="20dp"
+        android:paddingStart="25dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="25dp"
+        android:paddingEnd="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
+        app:layout_constraintVertical_bias="0.708" />
 
     <EditText
         android:id="@+id/etTask"
-        android:layout_width="266dp"
-        android:layout_height="42dp"
+        android:layout_width="270dp"
+        android:layout_height="47dp"
         android:hint="New Task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintVertical_bias="0.968" />
 
     <Button
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FB4608"
         android:clickable="true"
+        android:text="@string/add"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -55,5 +80,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.967"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <TextClock
+        android:id="@+id/Clock"
+        android:layout_width="268dp"
+        android:layout_height="87dp"
+        android:background="@drawable/round_corner_home_clock"
+        android:format24Hour="hh:mm:ss"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

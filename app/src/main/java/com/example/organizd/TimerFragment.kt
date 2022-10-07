@@ -55,14 +55,6 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
 
         // Info toast
-
-        /*
-        info.setOnClickListener{
-            Toast.makeText(this@TimerFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
-        }
-        */
-
-
         binding.infoIcon.setOnClickListener{
             Toast.makeText(this@TimerFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
         }
