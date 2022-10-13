@@ -8,11 +8,12 @@
 
     <TextView
         android:id="@+id/tvTimerFragment"
-        android:layout_width="106dp"
-        android:layout_height="45dp"
+        android:layout_width="146dp"
+        android:layout_height="62dp"
         android:text="Timer"
-        android:textSize="30sp"
+        android:textSize="45sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -34,7 +35,7 @@
         app:srcCompat="@drawable/info_icon" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switchNotDisturb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total focus"

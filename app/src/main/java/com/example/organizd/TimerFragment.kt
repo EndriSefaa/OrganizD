@@ -1,15 +1,18 @@
 package com.example.organizd
 
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.organizd.databinding.FragmentTimerBinding
-import java.time.LocalDateTime
 import java.util.*
+
 
 class TimerFragment : Fragment(R.layout.fragment_timer) {
 
@@ -25,6 +28,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     ): View? {
         //return inflater.inflate(R.layout.fragment_timer, container, false)
 
+        val mNotificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         binding = FragmentTimerBinding.inflate(layoutInflater)
         val view = binding.root
@@ -58,6 +62,23 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         binding.infoIcon.setOnClickListener{
             Toast.makeText(this@TimerFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
         }
+
+
+        
+        // Prova attivazione modalità non disturbare.
+
+        binding.switchNotDisturb.setOnCheckedChangeListener{ buttonView, isChecked ->
+
+            if(isChecked)
+            {
+                if (!mNotificationManager.isNotificationPolicyAccessGranted) {
+                    val intent = Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
+                    startActivity(intent)
+                }
+            }
+
+        }
+
 
 
         return view
