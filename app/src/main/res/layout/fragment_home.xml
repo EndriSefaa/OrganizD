@@ -12,17 +12,20 @@
     <!-- ++++++++++++++ TITOLO HOME ++++++++++++++ -->
 
 
+    <!-- +++++++++++++++++ ORA E DATA ++++++++++++++++++++ -->
+
     <LinearLayout
         android:id="@+id/linearLayoutHome"
         android:layout_width="370dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:gravity="left"
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutTimeAndDate"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent">
 
 
@@ -43,32 +46,29 @@
 
     </LinearLayout>
 
-
-    <!-- +++++++++++++++++ ORA E DATA ++++++++++++++++++++ -->
-
     <LinearLayout
         android:id="@+id/linearLayoutTimeAndDate"
-        android:layout_width="317dp"
-        android:layout_height="149dp"
+        android:layout_width="289dp"
+        android:layout_height="81dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutMyTask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.853">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <TextClock
             android:id="@+id/Clock"
-            android:layout_width="258dp"
-            android:layout_height="104dp"
+            android:layout_width="221dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/round_corner_home_clock"
             android:format12Hour="hh:mm"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="50dp"
+            android:textSize="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -94,8 +94,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutMyTask"
-        android:layout_width="399dp"
-        android:layout_height="400dp"
+        android:layout_width="405dp"
+        android:layout_height="498dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -103,8 +103,7 @@
         android:paddingRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutNewTask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.968">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <TextView
@@ -125,8 +124,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="363dp"
-            android:layout_height="329dp"
+            android:layout_width="373dp"
+            android:layout_height="448dp"
             android:background="@drawable/round_corner_task"
             android:padding="20dp"
             android:paddingStart="25dp"
@@ -146,9 +145,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutNewTask"
-        android:layout_width="362dp"
-        android:layout_height="68dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="363dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
