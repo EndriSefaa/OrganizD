@@ -1,14 +1,10 @@
 package com.example.organizd
 
+import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,15 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.organizd.Adapters.TasksListAdapter
 import com.example.organizd.databinding.FragmentHomeBinding
 import com.example.organizd.db.Task
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.MediaMetadata
-import com.google.android.exoplayer2.Player
-import com.google.android.material.snackbar.Snackbar
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -56,6 +44,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val adapter = TasksListAdapter(tasksList)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.floatingActionButton.setOnClickListener {
+
+            val intent = Intent(requireContext(), AddActivity::class.java)
+            val currentDate = LocalDate.now()
+
+            val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+            val formattedDate = currentDate.format(formatter).toString()
+            intent.putExtra("EXTRA_DATE", formattedDate)
+
+            startActivity(intent)
+
+
+/*
+            val name = binding.etTask.text.toString()
+            val todo = Task(2, "", name, "")
+            println("tass sei bellissimo")
+            tasksList.add(todo)
+            //adapter.notifyDataSetChanged() non efficiente
+            adapter.notifyItemInserted(tasksList.size - 1)
+
+ */
+
+
+        }
+
         return view
 
     }
@@ -76,14 +90,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.floatingActionButton.setOnClickListener {
-            val name = binding.etTask.text.toString()
-            val todo = Task(2, "", name, "")
-            println("tass sei bellissimo")
-            tasksList.add(todo)
-            //adapter.notifyDataSetChanged() non efficiente
-            adapter.notifyItemInserted(tasksList.size - 1)
-        }
 
 
 

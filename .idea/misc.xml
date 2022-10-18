@@ -4,11 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable-mdpi/ic_image.xml" value="0.2555" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.124" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable/calendar_view_theme.xml" value="0.124" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_add.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_add.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_calendar.xml" value="0.2359375" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_list.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_todo.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.226" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25260226484658066" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.19610507246376813" />
