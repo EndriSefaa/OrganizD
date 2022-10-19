@@ -3,21 +3,35 @@ package com.example.organizd
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.organizd.databinding.FragmentTimerBinding
 import java.util.*
+import kotlin.collections.ArrayList
 
 
+@Suppress("DEPRECATION")
 class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     lateinit var binding: FragmentTimerBinding
     lateinit var dataHelper: DataHelper
+
+    lateinit var mediaplayer: MediaPlayer
+
+    var songs: ArrayList<Int> = ArrayList()
+
+    var currentIndex = 0
+
+    lateinit var runnable: Runnable
+    private var handler = Handler()
 
     private val timer = Timer()
 
@@ -79,21 +93,195 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
         }
 
+        // Richiamo funzione player
+        musicPlayer()
+
+
 
 
         return view
     }
 
+
+
+
+
+
+
+
+
     override fun onViewCreated(view: View , savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-        //val info = view.findViewById<ImageView>(R.id.infoIcon)
-
-        //binding = FragmentTimerBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
-
-
 
     }
+
+
+    // Music player
+    private fun musicPlayer()
+    {
+
+        nameAndCoverSong()
+
+
+        songs.add(0, R.raw.jazz_music)
+        songs.add(1, R.raw.lofi_hiphop)
+        songs.add(2,R.raw.relaxing_classical_music)
+
+
+
+        // Verifico subito se la variabile mediaplayer non è già stata inizializzata
+        if(!this::mediaplayer.isInitialized){
+            mediaplayer = MediaPlayer.create(this@TimerFragment.requireActivity(), songs.get(currentIndex))
+        }
+
+
+        // seekbar in partenza a 0
+        binding.seekBar.progress = 0
+
+
+        // Impostiamo il valore massimo della seekbar pari alla durata del brano
+        binding.seekBar.max = mediaplayer.duration
+
+
+        if(mediaplayer.isPlaying)
+        {
+            binding.btnPlay.setImageResource(R.drawable.ic_pause)
+        }
+
+        binding.btnPlay.setOnClickListener{
+            // Andiamo a verificare se il player è partito
+            if(!mediaplayer.isPlaying)
+            {
+                mediaplayer.start()
+                // Se è partito andiamo a cambiare l'immagine del bottone play con quella si pausa
+                binding.btnPlay.setImageResource(R.drawable.ic_pause)
+            }
+            else // Altrimenti il player è in pausa
+            {
+                mediaplayer.pause()
+                // Essendo in pausa il bottone diventa play
+                binding.btnPlay.setImageResource(R.drawable.ic_play)
+            }
+
+        }
+
+        // Ora facciamo in modo che quando viene spostata la seekbar dovrà spostarsi anche il brano
+        binding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, pos: Int, changed: Boolean) {
+                // Quando cambia la prograssione della barra cambia la progressione del brano
+                if(changed)
+                {
+                    mediaplayer.seekTo(pos)
+
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+
+
+        runnable = Runnable {
+            binding.seekBar.progress = mediaplayer.currentPosition
+            handler.postDelayed(runnable, 1000)
+        }
+        handler.postDelayed(runnable, 1000)
+
+        // Facciamo in modo che quando il brano finisce la seekbar torni a 0
+        mediaplayer.setOnCompletionListener {
+            binding.btnPlay.setImageResource(R.drawable.ic_play)
+            binding.seekBar.progress = 0
+        }
+
+
+        // Funzionamento bottone next
+        binding.btnNext.setOnClickListener{
+            if(mediaplayer.isPlaying)
+            {
+                binding.btnPlay.setImageResource(R.drawable.ic_pause)
+            }
+            else
+            {
+                binding.btnPlay.setImageResource(R.drawable.ic_pause)
+            }
+
+            if(currentIndex < songs.size - 1)
+            {
+                currentIndex++
+            }
+            else
+            {
+                currentIndex = 0
+            }
+
+            if(mediaplayer.isPlaying)
+            {
+                mediaplayer.stop()
+            }
+
+            mediaplayer = MediaPlayer.create(this@TimerFragment.requireActivity(), songs.get(currentIndex))
+            mediaplayer.start()
+            nameAndCoverSong()
+        }
+
+
+        // Funzionamento bottone prev
+        binding.btnPrev.setOnClickListener{
+            if(mediaplayer.isPlaying)
+            {
+                binding.btnPlay.setImageResource(R.drawable.ic_pause)
+            }
+            else
+            {
+                binding.btnPlay.setImageResource(R.drawable.ic_pause)
+            }
+
+            if(currentIndex > 0)
+            {
+                currentIndex--
+            }
+            else
+            {
+                currentIndex = songs.size - 1
+            }
+
+            if(mediaplayer.isPlaying)
+            {
+                mediaplayer.stop()
+            }
+
+            mediaplayer = MediaPlayer.create(this@TimerFragment.requireActivity(), songs.get(currentIndex))
+            mediaplayer.start()
+            nameAndCoverSong()
+        }
+
+    }
+
+
+    // Funzione per l'assegnazione del nome e della cover del brano riprodotto
+    private fun nameAndCoverSong(){
+        if(currentIndex == 0)
+        {
+            binding.textMusicName.setText("Jazz music")
+            binding.coverImage.setImageResource(R.drawable.jazz_music_cover)
+        }
+        if(currentIndex == 1)
+        {
+            binding.textMusicName.setText("LoFi HipHop music")
+            binding.coverImage.setImageResource(R.drawable.lofi_cover)
+        }
+        if(currentIndex == 2)
+        {
+            binding.textMusicName.setText("Classic music")
+            binding.coverImage.setImageResource(R.drawable.classical_music_cover)
+        }
+    }
+
+
+
 
     private inner class TimeTask: TimerTask()
     {
