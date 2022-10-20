@@ -129,12 +129,14 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         return millis
     }
 
+    // Funzione per verificare se il timer è partito
     private fun verifyStartingTimer(){
         if(isStarting == true)
         {
             binding.btnContdownStart.setText("Pause")
             binding.textAtWorkOrBreak.setText("At work 💪")
         }
+
     }
 
 
@@ -152,6 +154,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             {
                 pauseCountdownTimer()
                 binding.btnContdownStart.setText("Start")
+                binding.textAtWorkOrBreak.setText("🍅")
                 isStarting = false
             }
         }
