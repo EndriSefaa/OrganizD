@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.organizd.databinding.FragmentTimerBinding
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
@@ -23,9 +25,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     lateinit var binding: FragmentTimerBinding
     lateinit var dataHelper: DataHelper
-
     lateinit var mediaplayer: MediaPlayer
-
     var songs: ArrayList<Int> = ArrayList()
 
     var currentIndex = 0
@@ -35,12 +35,20 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     private val timer = Timer()
 
+    var start = 1500000
+    var timerCountDown = start
+    lateinit var countDownTimer: CountDownTimer
+    var isStarting: Boolean = false
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         //return inflater.inflate(R.layout.fragment_timer, container, false)
+
 
         val mNotificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -49,7 +57,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
         dataHelper = DataHelper(requireActivity()) // Non posso inserire nelle parentesi (applicationContext) poiché mi trovo in un fragment.
 
-
+        /*
         binding.startButton.setOnClickListener{ startStopAction() }
         binding.resetButton.setOnClickListener{ resetAction() }
 
@@ -70,7 +78,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
         // Aggiornamento costante della vista
         timer.scheduleAtFixedRate(TimeTask(), 0, 500) // Ritardo nell'aggiornamento pari a zero e controlleremo ogni mezzo secondo.
-
+        */
 
         // Info toast
         binding.infoIcon.setOnClickListener{
@@ -96,14 +104,113 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         // Richiamo funzione player
         musicPlayer()
 
+        setTextTimer()
 
 
+        binding.textAtWorkOrBreak.setText("🍅")
+
+        // Funzione di verifica se il timer è partito (se non ci fosse, il tasto pausa al cambio di fragment tornerebbe a start anche se il timer è gia partito)
+        verifyStartingTimer()
+
+        // Richiamo funzione per far partire il timer al click di start
+        onClickTimerCountdown()
+
+        println(minutsToMillis())
 
         return view
     }
 
 
 
+    // ++++++++++++++++ COUNTDOWN TIMER FUN +++++++++++++++++++
+
+    private fun minutsToMillis(): Long {
+        val millis = TimeUnit.MINUTES.toMillis(10)
+        return millis
+    }
+
+    private fun verifyStartingTimer(){
+        if(isStarting == true)
+        {
+            binding.btnContdownStart.setText("Pause")
+            binding.textAtWorkOrBreak.setText("At work 💪")
+        }
+    }
+
+
+    // Funzione per far partire il timer al click di start
+    private fun onClickTimerCountdown(){
+        binding.btnContdownStart.setOnClickListener{
+
+            if(binding.btnContdownStart.text == "Start")
+            {
+                startCountdownTimer()
+                binding.btnContdownStart.setText("Pause")
+                isStarting = true
+            }
+            else
+            {
+                pauseCountdownTimer()
+                binding.btnContdownStart.setText("Start")
+                isStarting = false
+            }
+        }
+
+        binding.btnContdownRestart.setOnClickListener{
+            restartCountdownTimer()
+            binding.btnContdownStart.setText("Start")
+            binding.textAtWorkOrBreak.setText("🍅")
+        }
+
+
+    }
+
+
+
+    private fun startCountdownTimer(){
+        binding.textAtWorkOrBreak.setText("At work 💪")
+        countDownTimer = object : CountDownTimer(timerCountDown.toLong(), 1000) {
+            override fun onFinish() {
+                Toast.makeText(this@TimerFragment.requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
+
+                if( !(start == 1500000) )
+                {
+                    start = 1500000 // 25min di lavoro
+                    binding.textAtWorkOrBreak.setText("At work 💪")
+                }
+                else
+                {
+                    start = 300000 // 5min di pausa
+                    binding.textAtWorkOrBreak.setText("Break ☕️")
+                }
+
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                timerCountDown = millisUntilFinished.toInt()
+                setTextTimer()
+            }
+        }.start()
+    }
+
+    private fun pauseCountdownTimer(){
+        countDownTimer.cancel()
+    }
+
+    private fun restartCountdownTimer(){
+        countDownTimer.cancel()
+        timerCountDown = start
+        setTextTimer()
+    }
+
+    fun setTextTimer() {
+        var m = (timerCountDown / 1000) / 60
+        var s = (timerCountDown / 1000) % 60
+
+        var format = String.format("%02d:%02d", m, s)
+
+        binding.textContdown.setText(format)
+    }
 
 
 
@@ -280,8 +387,11 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         }
     }
 
+}
 
 
+
+/*
 
     private inner class TimeTask: TimerTask()
     {
@@ -365,4 +475,4 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
 }
 
-
+*/
