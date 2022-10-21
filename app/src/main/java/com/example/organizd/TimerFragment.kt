@@ -4,6 +4,8 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -14,10 +16,11 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.organizd.databinding.FragmentTimerBinding
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
 
 
 @Suppress("DEPRECATION")
@@ -35,10 +38,11 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     private val timer = Timer()
 
-    var start = 1500000
+    var start = 60000
     var timerCountDown = start
     lateinit var countDownTimer: CountDownTimer
-    var isStarting: Boolean = false
+    var isStarting: Boolean = false // Variabile utilizzata per verificare se il timer sta scorrendo
+    var atRest: String = "No" // Variabile usata per verificare se sono nei 5min di pausa
 
 
 
@@ -136,6 +140,10 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             binding.btnContdownStart.setText("Pause")
             binding.textAtWorkOrBreak.setText("At work 💪")
         }
+        if(atRest == "Yes")
+        {
+            binding.textAtWorkOrBreak.setText("Break ☕️")
+        }
 
     }
 
@@ -146,6 +154,14 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
             if(binding.btnContdownStart.text == "Start")
             {
+                //timerCountDown = start
+
+                if(atRest == "Yes") // I minuti sono di pausa? si (break), no (at work)
+                {
+                    binding.textAtWorkOrBreak.setText("Break ☕️")
+                }
+                else binding.textAtWorkOrBreak.setText("At work 💪")
+
                 startCountdownTimer()
                 binding.btnContdownStart.setText("Pause")
                 isStarting = true
@@ -171,20 +187,32 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
 
     private fun startCountdownTimer(){
-        binding.textAtWorkOrBreak.setText("At work 💪")
+        //binding.textAtWorkOrBreak.setText("At work 💪")
         countDownTimer = object : CountDownTimer(timerCountDown.toLong(), 1000) {
             override fun onFinish() {
                 Toast.makeText(this@TimerFragment.requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
 
-                if( !(start == 1500000) )
+                playSoundNotification() // Richiamo funzione per avviso sonoro termine minutaggio
+
+                isStarting = false
+
+                if( !(start == 60000) )
                 {
-                    start = 1500000 // 25min di lavoro
+                    start = 60000 // 25min di lavoro
                     binding.textAtWorkOrBreak.setText("At work 💪")
+                    binding.btnContdownStart.setText("Start")
+                    timerCountDown = start
+                    atRest = "No"
+                    setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
                 }
                 else
                 {
-                    start = 300000 // 5min di pausa
+                    start = 20000 // 5min di pausa
                     binding.textAtWorkOrBreak.setText("Break ☕️")
+                    binding.btnContdownStart.setText("Start")
+                    timerCountDown = start
+                    atRest = "Yes"
+                    setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
                 }
 
             }
@@ -215,6 +243,14 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         binding.textContdown.setText(format)
     }
 
+    // Funzione per la riproduzione del suono di notifica
+    fun playSoundNotification()
+    {
+        val notification: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val r = RingtoneManager.getRingtone(this@TimerFragment.requireActivity(), notification)
+        r.play()
+    }
 
 
 
