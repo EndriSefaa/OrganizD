@@ -10,5 +10,6 @@ data class Task (
     val id: Int,
     val date : String,
     val name : String,
-    val completed :  String
+    val hour: String,
+    val completed :  Boolean
     )

@@ -59,7 +59,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.661" />
@@ -78,14 +78,15 @@
         app:layout_constraintVertical_bias="0.26" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="361dp"
-        android:layout_height="147dp"
+        android:id="@+id/recyclerViewCalendar"
+        android:layout_width="389dp"
+        android:layout_height="177dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.861" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <Button
         android:id="@+id/button"

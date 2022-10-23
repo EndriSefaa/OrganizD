@@ -10,22 +10,20 @@ import com.example.organizd.db.TaskRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TaskViewModel(application: Application, date: String): AndroidViewModel(application) {
+class SpecificTaskViewModel(application: Application, id: Int): AndroidViewModel(application) {
 
-    val redAllDoData: LiveData<List<Task>>
-    val redAllDoneData: LiveData<List<Task>>
+    val specificTask: Task
     private val repository: TaskRepository
 
     init {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
-        redAllDoData = repository.readDayDoTask(date)
-        redAllDoneData = repository.readDayDoneTask(date)
+        specificTask = repository.readSpecificTask(id)
     }
 
-    fun addTask(task: Task){
+    fun update(task: Task){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addTask(task)
+            repository.updateTask(task)
         }
     }
 }

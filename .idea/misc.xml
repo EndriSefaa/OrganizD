@@ -8,13 +8,19 @@
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable/calendar_view_theme.xml" value="0.124" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_add.xml" value="0.25" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_add2.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_add_no_today.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_modify.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_add.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_calendar.xml" value="0.2359375" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_timer.xml" value="0.25" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_update.xml" value="0.2359375" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_list.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_todo.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/menu/task_menu.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.226" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25260226484658066" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.19610507246376813" />

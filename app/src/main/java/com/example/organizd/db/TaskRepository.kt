@@ -5,9 +5,17 @@ import java.util.*
 
 class TaskRepository(private val taskDao: TaskDao) {
 
-     fun readDayTask(day: String): LiveData<List<Task>> = taskDao.readDayTasks(day)
+     fun readDayDoTask(day: String): LiveData<List<Task>> = taskDao.readDayDoTasks(day)
+
+    fun readDayDoneTask(day: String): LiveData<List<Task>> = taskDao.readDayDoneTasks(day, true)
+
+    fun readSpecificTask(id: Int): Task = taskDao.readSpecificTask(id)
 
     suspend fun addTask(task: Task){
         taskDao.addTask(task)
+    }
+
+    suspend fun updateTask(task: Task){
+        taskDao.updateTask(task)
     }
 }

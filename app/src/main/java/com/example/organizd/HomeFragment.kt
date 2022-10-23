@@ -2,25 +2,29 @@ package com.example.organizd
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.organizd.Adapters.TasksListAdapter
+import com.example.organizd.ViewModels.TaskViewModel
+import com.example.organizd.ViewModels.TaskViewModelFactory
 import com.example.organizd.databinding.FragmentHomeBinding
 import com.example.organizd.db.Task
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.util.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     lateinit var binding: FragmentHomeBinding
-    var tasksList = mutableListOf<Task>()
+    private lateinit var taskViewModel: TaskViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,42 +35,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         val view = binding.root
 
-        tasksList = mutableListOf(
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", "")
-        )
+        val intent = Intent(requireContext(), AddActivity::class.java)
+
+        val sdf = SimpleDateFormat("dd-MM-yyyy")
+        val currentDate = sdf.format(Date()).toString()
 
 
-        val adapter = TasksListAdapter(tasksList)
+
+
+
+
+        val adapter = TasksListAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        val taskViewModelFactory = TaskViewModelFactory(this.activity!!.application, currentDate)
+        taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(TaskViewModel::class.java)
+
+
+
+        taskViewModel.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+            adapter.setData(task)
+
+        })
+
+        registerForContextMenu(binding.recyclerView)
         binding.floatingActionButton.setOnClickListener {
 
-            val intent = Intent(requireContext(), AddActivity::class.java)
-            val currentDate = LocalDate.now()
-
-            val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-            val formattedDate = currentDate.format(formatter).toString()
-            intent.putExtra("EXTRA_DATE", formattedDate)
+            intent.putExtra("EXTRA_DATE", currentDate)
 
             startActivity(intent)
-
-
-/*
-            val name = binding.etTask.text.toString()
-            val todo = Task(2, "", name, "")
-            println("tass sei bellissimo")
-            tasksList.add(todo)
-            //adapter.notifyDataSetChanged() non efficiente
-            adapter.notifyItemInserted(tasksList.size - 1)
-
- */
-
 
         }
 
@@ -76,22 +74,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        var tasksList = mutableListOf(
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", ""),
-            Task(1, "", "pino", "")
-        )
-
-        val adapter = TasksListAdapter(tasksList)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
-
 
         // Giorno mese anno nella home.
 
@@ -128,7 +110,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 val position = viewHolder.adapterPosition
-                tasksList.removeAt(position)
+
 
 
                 Toast.makeText(this@HomeFragment.requireActivity(), "Task eliminata.", Toast.LENGTH_LONG)
@@ -139,6 +121,27 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menu.setHeaderTitle("Pick option")
+        requireActivity().menuInflater.inflate(R.menu.task_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.modify -> {
+
+            }
+            R.id.cancel -> {
+
+            }
+        }
+        return super.onContextItemSelected(item)
+    }
 }
 
 
