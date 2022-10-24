@@ -24,31 +24,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-    <ImageView
-        android:id="@+id/infoIcon"
-        android:layout_width="24dp"
-        android:layout_height="28dp"
-        android:tint="#6666FF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.343"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399"
-        app:srcCompat="@drawable/info_icon" />
-
-    <Switch
-        android:id="@+id/switchNotDisturb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total focus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399" />
-
 
     <!--
     <TextView
@@ -97,6 +72,59 @@
         app:layout_constraintVertical_bias="0.512" />
 
     -->
+
+    <ImageView
+        android:id="@+id/infoIcon"
+        android:layout_width="24dp"
+        android:layout_height="28dp"
+        android:tint="#6666FF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576"
+        app:srcCompat="@drawable/info_icon" />
+
+    <Switch
+        android:id="@+id/switchNotDisturb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total focus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
+
+    <TextView
+        android:id="@+id/pomoContText"
+        android:layout_width="245dp"
+        android:layout_height="31dp"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <TextView
+        android:id="@+id/pomoDayContText"
+        android:layout_width="245dp"
+        android:layout_height="31dp"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
 
     <View
         android:id="@+id/view"

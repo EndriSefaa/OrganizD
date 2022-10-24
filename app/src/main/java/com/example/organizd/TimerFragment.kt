@@ -3,6 +3,7 @@ package com.example.organizd
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
@@ -16,18 +17,18 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.organizd.databinding.FragmentTimerBinding
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 
 @Suppress("DEPRECATION")
 class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     lateinit var binding: FragmentTimerBinding
-    lateinit var dataHelper: DataHelper
+    //lateinit var dataHelper: DataHelper
+
     lateinit var mediaplayer: MediaPlayer
     var songs: ArrayList<Int> = ArrayList()
 
@@ -36,7 +37,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     lateinit var runnable: Runnable
     private var handler = Handler()
 
-    private val timer = Timer()
+    //private val timer = Timer()
 
     var start = 60000
     var timerCountDown = start
@@ -44,7 +45,13 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     var isStarting: Boolean = false // Variabile utilizzata per verificare se il timer sta scorrendo
     var atRest: String = "No" // Variabile usata per verificare se sono nei 5min di pausa
 
+    var pomoCont:Int = 0
 
+    lateinit var sharedPref: SharedPreferences
+
+    val day =  Calendar.getInstance()
+    var lastDayUse: String? = null
+    var pomoDayCont:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,13 +60,14 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     ): View? {
         //return inflater.inflate(R.layout.fragment_timer, container, false)
 
+        sharedPref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
 
         val mNotificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         binding = FragmentTimerBinding.inflate(layoutInflater)
         val view = binding.root
 
-        dataHelper = DataHelper(requireActivity()) // Non posso inserire nelle parentesi (applicationContext) poiché mi trovo in un fragment.
+        //dataHelper = DataHelper(requireActivity()) // Non posso inserire nelle parentesi (applicationContext) poiché mi trovo in un fragment.
 
         /*
         binding.startButton.setOnClickListener{ startStopAction() }
@@ -108,10 +116,31 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         // Richiamo funzione player
         musicPlayer()
 
+        // Setto a schermo il minutazzio
         setTextTimer()
 
 
+
+
         binding.textAtWorkOrBreak.setText("🍅")
+
+
+        val currentDay = day.get(Calendar.DAY_OF_MONTH).toString()
+        val lastUse = sharedPref.getString("LASTDAYUSE", lastDayUse)
+        if(lastUse.isNullOrEmpty() || !(lastUse == currentDay))
+        {
+            val erase = 0
+            sharedPref.edit().putInt("POMODAYCONT", erase).apply()
+            pomoDayCont = sharedPref.getInt("POMODAYCONT", pomoDayCont)
+            binding.pomoDayContText.setText("Oggi hai completato: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
+        }
+        else
+        {
+            binding.pomoDayContText.setText("Oggi hai completato: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
+        }
+
+        sharedPref.edit().putInt("POMOCONT", pomoCont)
+        binding.pomoContText.setText("Hai completato: " + sharedPref.getInt("POMOCONT", pomoCont).toString() + " 🍅")
 
         // Funzione di verifica se il timer è partito (se non ci fosse, il tasto pausa al cambio di fragment tornerebbe a start anche se il timer è gia partito)
         verifyStartingTimer()
@@ -150,17 +179,19 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     // Funzione per far partire il timer al click di start
     private fun onClickTimerCountdown(){
-        binding.btnContdownStart.setOnClickListener{
 
+        binding.btnContdownStart.setOnClickListener{
             if(binding.btnContdownStart.text == "Start")
             {
-                //timerCountDown = start
 
                 if(atRest == "Yes") // I minuti sono di pausa? si (break), no (at work)
                 {
                     binding.textAtWorkOrBreak.setText("Break ☕️")
                 }
-                else binding.textAtWorkOrBreak.setText("At work 💪")
+                else
+                {
+                    binding.textAtWorkOrBreak.setText("At work 💪")
+                }
 
                 startCountdownTimer()
                 binding.btnContdownStart.setText("Pause")
@@ -187,7 +218,6 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
 
     private fun startCountdownTimer(){
-        //binding.textAtWorkOrBreak.setText("At work 💪")
         countDownTimer = object : CountDownTimer(timerCountDown.toLong(), 1000) {
             override fun onFinish() {
                 Toast.makeText(this@TimerFragment.requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
@@ -204,6 +234,15 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                     timerCountDown = start
                     atRest = "No"
                     setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
+                    isStarting = false
+                    savePomoInSharedPref() // Salvataggio del ciclo pomodoro
+
+                    // Salvo il giorno in cui premo start per far partire il timer
+                    lastDayUse = day.get(Calendar.DAY_OF_MONTH).toString()
+                    sharedPref.edit().putString("LASTDAYUSE", lastDayUse)
+
+                    // Richiamo funzione per salvare i pomodori giornalieri
+                    savePomoDayInSharedPref()
                 }
                 else
                 {
@@ -213,6 +252,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                     timerCountDown = start
                     atRest = "Yes"
                     setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
+                    isStarting = false
                 }
 
             }
@@ -222,6 +262,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                 setTextTimer()
             }
         }.start()
+
     }
 
     private fun pauseCountdownTimer(){
@@ -234,6 +275,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         setTextTimer()
     }
 
+    // Funzione per settare a schermo i minuti
     fun setTextTimer() {
         var m = (timerCountDown / 1000) / 60
         var s = (timerCountDown / 1000) % 60
@@ -251,6 +293,26 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         val r = RingtoneManager.getRingtone(this@TimerFragment.requireActivity(), notification)
         r.play()
     }
+
+    private fun savePomoInSharedPref()
+    {
+        var pomoTot = sharedPref.getInt("POMOCONT", pomoCont)
+        pomoTot++
+        sharedPref.edit().putInt("POMOCONT", pomoTot).apply()
+        pomoCont = sharedPref.getInt("POMOCONT", pomoCont)
+        binding.pomoContText.setText("Hai completato: " + pomoCont.toString() + " 🍅")
+    }
+
+    private fun savePomoDayInSharedPref()
+    {
+        var pomoDayTot = sharedPref.getInt("POMODAYCONT", pomoDayCont)
+        pomoDayTot++
+        sharedPref.edit().putInt("POMODAYCONT", pomoDayTot).apply()
+        pomoDayCont = sharedPref.getInt("POMODAYCONT", pomoDayCont)
+        binding.pomoDayContText.setText("Oggi hai completato: " + pomoDayCont.toString() + " 🍅")
+    }
+
+
 
 
 
