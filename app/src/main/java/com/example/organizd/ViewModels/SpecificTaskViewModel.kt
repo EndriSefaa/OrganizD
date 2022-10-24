@@ -12,13 +12,16 @@ import kotlinx.coroutines.launch
 
 class SpecificTaskViewModel(application: Application, id: Int): AndroidViewModel(application) {
 
-    val specificTask: Task
+    val specificTask: LiveData<Task>
     private val repository: TaskRepository
 
     init {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
+
         specificTask = repository.readSpecificTask(id)
+
+
     }
 
     fun update(task: Task){

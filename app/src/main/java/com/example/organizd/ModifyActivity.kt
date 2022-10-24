@@ -32,14 +32,16 @@ class ModifyActivity : AppCompatActivity() {
 
         binding.timePicker1.setIs24HourView(true)
 
+
         app = intent.getIntExtra("EXTRA_ID", 0)
-        if(app != null){
-            binding.textView5.setText("Task for " + app)
-        }
+
 
         val taskViewModelFactory = SpecificTaskViewModelFactory(application, app)
         taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(SpecificTaskViewModel::class.java)
-
+        binding.textView5.setText(taskViewModel.specificTask.value?.name ?: "")
+        if(app != null){
+            binding.textView5.setText("Task for " + (taskViewModel.specificTask.value?.date ?: ""))
+        }
         binding.buttonBack.setOnClickListener {
             finish()
         }
@@ -63,7 +65,7 @@ class ModifyActivity : AppCompatActivity() {
 
         if (inputCheck(hour, minutes, taskName)){
 
-            val task = Task(app, taskViewModel.specificTask.date, taskName,  orario, false)
+            val task = Task(app, taskViewModel.specificTask.value?.date ?: "", taskName,  orario, false)
             taskViewModel.update(task)
             Toast.makeText(
                 this,

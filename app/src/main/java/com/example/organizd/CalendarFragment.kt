@@ -11,6 +11,7 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.organizd.Adapters.TaskCalendarPastAdapter
 import com.example.organizd.Adapters.TasksListAdapter
 import com.example.organizd.ViewModels.TaskViewModel
 import com.example.organizd.ViewModels.TaskViewModelFactory
@@ -35,7 +36,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         val view = binding.root
 
 
-        val adapter = TasksListAdapter()
+        var adapter = TaskCalendarPastAdapter()
         binding.recyclerViewCalendar.adapter = adapter
         binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
 
@@ -58,7 +59,21 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
             date = (dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
 
+
+
             binding.textCurrentDate.setText(date)
+            /*
+            adapter = TaskCalendarPastAdapter()
+            binding.recyclerViewCalendar.adapter = adapter
+            binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
+            taskViewModelFactory = TaskViewModelFactory(this.activity!!.application, date)
+            taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(TaskViewModel::class.java)
+
+            taskViewModel.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+                adapter.setData(task)
+            })
+
+             */
 
         })
 
@@ -77,11 +92,13 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
                 var intent = Intent()
 
-                intent.putExtra("EXTRA_DATE", date)
+
                 if(date != currentDate.toString()){
                     intent = Intent(requireContext(), AddNoTodayActivity::class.java)
+                    intent.putExtra("EXTRA_DATE", date)
                 }else{
                     intent = Intent(requireContext(), AddActivity::class.java)
+                    intent.putExtra("EXTRA_DATE", date)
                 }
 
                 startActivity(intent)

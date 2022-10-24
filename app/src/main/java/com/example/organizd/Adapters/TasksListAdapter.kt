@@ -5,19 +5,42 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.organizd.AddActivity
+import com.example.organizd.ModifyActivity
 import com.example.organizd.R
 import com.example.organizd.db.Task
 import com.google.android.material.snackbar.Snackbar
 
-class TasksListAdapter : RecyclerView.Adapter<TasksListAdapter.TaskViewHolder>() {
+class TasksListAdapter(private val onClick: (Task)-> Unit) : RecyclerView.Adapter<TasksListAdapter.TaskViewHolder>() {
 
     private var taskList = emptyList<Task>()
 
-    class TaskViewHolder(row: View) : RecyclerView.ViewHolder(row){
+
+    class TaskViewHolder(row: View, val onClick: (Task) -> Unit) : RecyclerView.ViewHolder(row){
         val taskView = row.findViewById<TextView>(R.id.taskName)
+        val imageView = row.findViewById<ImageView>(R.id.edit_button)
+        private var currentTask: Task? = null
+
+        init{
+            imageView.setOnClickListener{
+                currentTask?.let{
+                    onClick(it)
+                }
+            }
+        }
+        fun bind(task: Task){
+            currentTask = task
+            taskView.text = currentTask!!.name
+
+
+        }
+
 
     }
 
@@ -27,18 +50,21 @@ class TasksListAdapter : RecyclerView.Adapter<TasksListAdapter.TaskViewHolder>()
 
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_todo, parent, false)
-        val holder = TaskViewHolder(layout)
+        val holder = TaskViewHolder(layout, onClick)
         holder.taskView.setOnClickListener {
             Snackbar.make(parent.rootView, "Click!", Snackbar.LENGTH_SHORT).show()
         }
 
 
+
         return holder
     }
 
+
+
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = taskList[position]
-        holder.taskView.text = currentTask.name
+        holder.bind(currentTask)
 
     }
 

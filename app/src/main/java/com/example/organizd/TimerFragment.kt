@@ -50,6 +50,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     lateinit var sharedPref: SharedPreferences
 
     val day =  Calendar.getInstance()
+    var currentDay : String? = ""
     var lastDayUse: String? = null
     var pomoDayCont:Int = 0
 
@@ -125,12 +126,13 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         binding.textAtWorkOrBreak.setText("🍅")
 
 
-        val currentDay = day.get(Calendar.DAY_OF_MONTH).toString()
+        currentDay = day.get(Calendar.DAY_OF_MONTH).toString()
         val lastUse = sharedPref.getString("LASTDAYUSE", lastDayUse)
         if(lastUse.isNullOrEmpty() || !(lastUse == currentDay))
         {
             val erase = 0
             sharedPref.edit().putInt("POMODAYCONT", erase).apply()
+            sharedPref.edit().putString("LASTDAYUSE", currentDay).apply()
             pomoDayCont = sharedPref.getInt("POMODAYCONT", pomoDayCont)
             binding.pomoDayContText.setText("Oggi hai completato: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
         }
@@ -309,6 +311,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         pomoDayTot++
         sharedPref.edit().putInt("POMODAYCONT", pomoDayTot).apply()
         pomoDayCont = sharedPref.getInt("POMODAYCONT", pomoDayCont)
+
         binding.pomoDayContText.setText("Oggi hai completato: " + pomoDayCont.toString() + " 🍅")
     }
 

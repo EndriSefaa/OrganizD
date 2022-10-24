@@ -9,7 +9,7 @@ class TaskRepository(private val taskDao: TaskDao) {
 
     fun readDayDoneTask(day: String): LiveData<List<Task>> = taskDao.readDayDoneTasks(day, true)
 
-    fun readSpecificTask(id: Int): Task = taskDao.readSpecificTask(id)
+    fun readSpecificTask(id: Int): LiveData<Task> = taskDao.readSpecificTask(id)
 
     suspend fun addTask(task: Task){
         taskDao.addTask(task)

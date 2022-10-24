@@ -18,7 +18,7 @@ interface TaskDao {
     fun  readDayDoneTasks(date: String, completed: Boolean): LiveData<List<Task>>
 
     @Query("SELECT * FROM task_table WHERE id = :id")
-    fun  readSpecificTask(id: Int): Task
+    fun  readSpecificTask(id: Int): LiveData<Task>
 
     @Update
     suspend fun updateTask(task: Task)

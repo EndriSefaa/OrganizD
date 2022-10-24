@@ -45,7 +45,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
 
-        val adapter = TasksListAdapter()
+        val adapter = TasksListAdapter{ task -> adapterOnClick(task) }
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -141,6 +141,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
         return super.onContextItemSelected(item)
+    }
+
+    private fun adapterOnClick(task: Task){
+        val intent = Intent(this.context, ModifyActivity()::class.java)
+        intent.putExtra("EXTRA_ID", task.id)
+        startActivity(intent)
     }
 }
 
