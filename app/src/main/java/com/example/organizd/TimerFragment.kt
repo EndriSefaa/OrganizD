@@ -231,11 +231,11 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                 if( !(start == 60000) )
                 {
                     start = 60000 // 25min di lavoro
-                    binding.textAtWorkOrBreak.setText("At work 💪")
                     binding.btnContdownStart.setText("Start")
                     timerCountDown = start
                     atRest = "No"
                     setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
+                    binding.textAtWorkOrBreak.setText("🍅")
                     isStarting = false
                     savePomoInSharedPref() // Salvataggio del ciclo pomodoro
 
@@ -249,10 +249,10 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                 else
                 {
                     start = 20000 // 5min di pausa
-                    binding.textAtWorkOrBreak.setText("Break ☕️")
                     binding.btnContdownStart.setText("Start")
                     timerCountDown = start
                     atRest = "Yes"
+                    binding.textAtWorkOrBreak.setText("🍅")
                     setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
                     isStarting = false
                 }
