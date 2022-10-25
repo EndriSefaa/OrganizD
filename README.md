@@ -1,5 +1,7 @@
 # OrganizD
 Mobile Programming Project
+
+
 Cose da fare per finire app:
 1) Aggiustare task_todo
 2) Aggiustare task_calendar_past
