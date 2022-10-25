@@ -64,9 +64,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         // Assegnazione immagine profilo in base al livello
 
-        var liv = 0 // variaile provvisoria, BISOGNA PASSARLA DAL NUMERO DELLE TASK !!!!!!
 
-        when(liv)
+        var savedLevel = pref.getInt("LEVEL", 0)
+        binding.textLevel.setText(savedLevel.toString())
+
+        when(savedLevel)
         {
             in 0..9 -> Glide.with(this).load(R.drawable.level_0to9).into(binding.profileImage)
             in 10..24 -> Glide.with(this).load(R.drawable.level_10to24).into(binding.profileImage)

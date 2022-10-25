@@ -7,8 +7,6 @@
     tools:context=".MainActivity">
 
 
-
-
     <!-- ++++++++++++++ TITOLO HOME ++++++++++++++ -->
 
     <LinearLayout
@@ -95,18 +93,25 @@
 
     <!-- ++++++++++++++++ My Task ++++++++++++++++++-->
 
+
+    <!-- ++++++++++++++++ New task ++++++++++++++++++ -->
+
+
     <LinearLayout
         android:id="@+id/linearLayoutMyTask"
-        android:layout_width="405dp"
-        android:layout_height="498dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="411dp"
+        android:layout_height="367dp"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutNewTask"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.489">
 
 
         <TextView
@@ -127,8 +132,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="373dp"
-            android:layout_height="448dp"
+            android:layout_width="361dp"
+            android:layout_height="330dp"
             android:background="@drawable/round_corner_task"
             android:padding="20dp"
             android:paddingStart="25dp"
@@ -146,53 +151,32 @@
 
     </LinearLayout>
 
-
-    <!-- ++++++++++++++++ New task ++++++++++++++++++ -->
-
-    <LinearLayout
-        android:id="@+id/linearLayoutNewTask"
-        android:layout_width="363dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="4dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FB4608"
+        android:clickable="true"
+        android:text="@string/add"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
-
-        <EditText
-            android:id="@+id/etTask"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:hint="New Task"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-            app:layout_constraintHorizontal_bias="0.469"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.976" />
-
-        <Button
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FB4608"
-            android:clickable="true"
-            android:text="@string/add"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98"
-            app:srcCompat="@android:drawable/ic_menu_add" />
-
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="354dp"
+        android:layout_height="122dp"
+        android:id="@+id/recyclerDone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMyTask"
+        app:layout_constraintVertical_bias="0.281" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

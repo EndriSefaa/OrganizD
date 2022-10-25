@@ -62,18 +62,19 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
 
             binding.textCurrentDate.setText(date)
-            /*
-            adapter = TaskCalendarPastAdapter()
-            binding.recyclerViewCalendar.adapter = adapter
-            binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
-            taskViewModelFactory = TaskViewModelFactory(this.activity!!.application, date)
-            taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(TaskViewModel::class.java)
 
-            taskViewModel.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+            var adapter2 = TaskCalendarPastAdapter()
+            binding.recyclerViewCalendar.swapAdapter(adapter2, false);
+            binding.recyclerViewCalendar.adapter = adapter2
+            binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
+            var taskViewModelFactory2 = TaskViewModelFactory(this.activity!!.application, date)
+            var taskViewModel2 = ViewModelProvider(this, taskViewModelFactory2).get(TaskViewModel::class.java)
+
+            taskViewModel2.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
                 adapter.setData(task)
             })
 
-             */
+
 
         })
 

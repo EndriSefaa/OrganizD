@@ -1,5 +1,6 @@
 package com.example.organizd
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -22,8 +23,14 @@ class ModifyActivity : AppCompatActivity() {
     var app by Delegates.notNull<Int>()
     private lateinit var taskViewModel: SpecificTaskViewModel
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var pref = this.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        var savedLevel = pref.getInt("LEVEL", 0)
+
 
 
         binding = ActivityModifyBinding.inflate(layoutInflater)
@@ -38,10 +45,15 @@ class ModifyActivity : AppCompatActivity() {
 
         val taskViewModelFactory = SpecificTaskViewModelFactory(application, app)
         taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(SpecificTaskViewModel::class.java)
-        binding.textView5.setText(taskViewModel.specificTask.value?.name ?: "")
+
         if(app != null){
-            binding.textView5.setText("Task for " + (taskViewModel.specificTask.value?.date ?: ""))
+            binding.textView5.setText("Task for " + (taskViewModel.specificTask?.date))
+            binding.editTextTaskName.setText(taskViewModel.specificTask?.name ?: "")
         }
+        println(taskViewModel.specificTask?.hour.toString().substringBefore(":").toInt())
+        println(taskViewModel.specificTask?.hour.toString().substringAfter(":").toInt())
+        binding.timePicker1.hour = taskViewModel.specificTask?.hour.toString().substringBefore(":").toInt()
+        binding.timePicker1.minute = taskViewModel.specificTask?.hour.toString().substringAfter(":").toInt()
         binding.buttonBack.setOnClickListener {
             finish()
         }
@@ -50,6 +62,44 @@ class ModifyActivity : AppCompatActivity() {
                 insertToDatabase()
                 finish()
             }
+
+
+        binding.buttonCancel.setOnClickListener {
+            val taskName = binding.editTextTaskName.text.toString()
+            val hour = binding.timePicker1.hour.toString()
+            val minutes = binding.timePicker1.minute.toString()
+            val orario: String = hour + ":" + minutes
+            val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, false)
+            taskViewModel.delete(task)
+
+            Toast.makeText(
+                this,
+                "Task Deleted",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            finish()
+        }
+        binding.buttonComplete.setOnClickListener {
+            val taskName = binding.editTextTaskName.text.toString()
+            val hour = binding.timePicker1.hour.toString()
+            val minutes = binding.timePicker1.minute.toString()
+            val orario: String = hour + ":" + minutes
+            val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, true)
+            taskViewModel.update(task)
+
+            savedLevel++
+            pref.edit().putInt("LEVEL", savedLevel).apply()
+            println(savedLevel)
+
+            Toast.makeText(
+                this,
+                "Task Completed",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            finish()
+        }
 
 
         }
@@ -65,7 +115,7 @@ class ModifyActivity : AppCompatActivity() {
 
         if (inputCheck(hour, minutes, taskName)){
 
-            val task = Task(app, taskViewModel.specificTask.value?.date ?: "", taskName,  orario, false)
+            val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, false)
             taskViewModel.update(task)
             Toast.makeText(
                 this,

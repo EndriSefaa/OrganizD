@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.organizd.Adapters.TaskCalendarPastAdapter
 import com.example.organizd.Adapters.TasksListAdapter
 import com.example.organizd.ViewModels.TaskViewModel
 import com.example.organizd.ViewModels.TaskViewModelFactory
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     lateinit var binding: FragmentHomeBinding
@@ -46,8 +48,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
         val adapter = TasksListAdapter{ task -> adapterOnClick(task) }
+        val adapter2 = TaskCalendarPastAdapter()
         binding.recyclerView.adapter = adapter
+        binding.recyclerDone.adapter = adapter2
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerDone.layoutManager = LinearLayoutManager(requireContext())
+
+
 
         val taskViewModelFactory = TaskViewModelFactory(this.activity!!.application, currentDate)
         taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(TaskViewModel::class.java)
@@ -58,6 +65,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             adapter.setData(task)
 
         })
+
+        taskViewModel.redAllDoneData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+            adapter2.setData(task)
+
+        })
+
+
+
 
         registerForContextMenu(binding.recyclerView)
         binding.floatingActionButton.setOnClickListener {
@@ -113,7 +128,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
 
-                Toast.makeText(this@HomeFragment.requireActivity(), "Task eliminata.", Toast.LENGTH_LONG)
+                Toast.makeText(this@HomeFragment.requireActivity(), "Task completed.", Toast.LENGTH_LONG)
             }
 
 
