@@ -12,6 +12,19 @@
 
     <!-- +++++++++++++++++ ORA E DATA ++++++++++++++++++++ -->
 
+    <ImageView
+        android:id="@+id/infoButton"
+        android:layout_width="38dp"
+        android:layout_height="36dp"
+        android:tint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06"
+        app:srcCompat="@drawable/info_icon" />
+
     <LinearLayout
         android:id="@+id/linearLayoutHome"
         android:layout_width="234dp"
@@ -101,8 +114,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutMyTask"
-        android:layout_width="411dp"
-        android:layout_height="367dp"
+        android:layout_width="409dp"
+        android:layout_height="356dp"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="16dp"
@@ -110,10 +123,9 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.489">
+        app:layout_constraintVertical_bias="0.456">
 
 
         <TextView
@@ -135,7 +147,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="361dp"
-            android:layout_height="330dp"
+            android:layout_height="304dp"
             android:background="@drawable/round_corner_task"
             android:padding="20dp"
             android:paddingStart="25dp"
@@ -153,44 +165,44 @@
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDone"
+        android:layout_width="345dp"
+        android:layout_height="121dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMyTask"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed task"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FB4608"
         android:clickable="true"
-        android:text="@string/add"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerDone"
-        android:layout_width="354dp"
-        android:layout_height="122dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMyTask"
-        app:layout_constraintVertical_bias="0.281" />
-
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="41dp"
-        android:layout_height="46dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044"
-        app:srcCompat="@drawable/info_icon" />
+        app:layout_constraintVertical_bias="0.957"
+        app:srcCompat="@drawable/ic_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
