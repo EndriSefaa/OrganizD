@@ -1,6 +1,9 @@
 package com.example.organizd
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +58,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             adapter.setData(task)
         })
 
+
+
         binding.calendarView.setOnDateChangeListener(CalendarView.OnDateChangeListener{view, year, month, dayOfMonth ->
 
             date = (dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
@@ -64,14 +69,15 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             binding.textCurrentDate.setText(date)
 
             var adapter2 = TaskCalendarPastAdapter()
-            binding.recyclerViewCalendar.swapAdapter(adapter2, false);
+            binding.recyclerViewCalendar.swapAdapter(adapter2, true);
             binding.recyclerViewCalendar.adapter = adapter2
             binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
             var taskViewModelFactory2 = TaskViewModelFactory(this.activity!!.application, date)
             var taskViewModel2 = ViewModelProvider(this, taskViewModelFactory2).get(TaskViewModel::class.java)
+            println(taskViewModel2.redAllDoData)
 
             taskViewModel2.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
-                adapter.setData(task)
+                adapter2.setData(task)
             })
 
 
@@ -104,6 +110,17 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
                 startActivity(intent)
             }
+        }
+
+        binding.infoButton.setOnClickListener{
+            val  dialogBinding = layoutInflater.inflate(R.layout.calendar_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
         }
 
         return view

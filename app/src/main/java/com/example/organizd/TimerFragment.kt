@@ -1,9 +1,12 @@
 package com.example.organizd
 
+import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
@@ -151,6 +154,20 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         onClickTimerCountdown()
 
         println(minutsToMillis())
+
+
+        binding.infoButton.setOnClickListener{
+            val  dialogBinding = layoutInflater.inflate(R.layout.timer_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+        }
+
+
 
         return view
     }

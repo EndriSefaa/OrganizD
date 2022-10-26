@@ -1,14 +1,17 @@
 package com.example.organizd
 
+import android.app.Dialog
 import android.app.UiModeManager.MODE_NIGHT_NO
 import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -46,6 +49,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
         // Switch tema scuro
+
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> { binding.themeSwitch.isChecked}
+        }
+
 
         binding.themeSwitch.setOnCheckedChangeListener{ buttonView, isChecked ->
 
@@ -104,6 +112,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             false
         })
 
+
+
+        binding.infoButton.setOnClickListener{
+            val  dialogBinding = layoutInflater.inflate(R.layout.profile_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+        }
+
+        binding.textCredits.setOnClickListener{
+            val  dialogBinding = layoutInflater.inflate(R.layout.credits_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+        }
 
         return view
     }

@@ -12,15 +12,20 @@
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_add_no_today.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/activity_modify.xml" value="0.25" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/calendar_dialog.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/credits_dialog.xml" value="0.20427350427350427" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_add.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_calendar.xml" value="0.2359375" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_timer.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/fragment_update.xml" value="0.2359375" />
-        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_calendar_done.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/home_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/profile_dialog.xml" value="0.20512820512820512" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_calendar_done.xml" value="0.264" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_list.xml" value="0.25" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/task_todo.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/layout/timer_dialog.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/Endri/Desktop/OrganizD/app/src/main/res/menu/task_menu.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.226" />

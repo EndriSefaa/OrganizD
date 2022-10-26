@@ -1,6 +1,9 @@
 package com.example.organizd
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -16,6 +19,7 @@ import com.example.organizd.ViewModels.TaskViewModel
 import com.example.organizd.ViewModels.TaskViewModelFactory
 import com.example.organizd.databinding.FragmentHomeBinding
 import com.example.organizd.db.Task
+import org.jetbrains.annotations.TestOnly
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -101,6 +105,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         swipeToDelete()
 
+        binding.infoButton.setOnClickListener{
+            val  dialogBinding = layoutInflater.inflate(R.layout.home_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+        }
+
     }
 
 
@@ -163,6 +178,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         intent.putExtra("EXTRA_ID", task.id)
         startActivity(intent)
     }
+
+
+
+
 }
 
 

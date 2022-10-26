@@ -6,6 +6,11 @@
     <string name="stop">Stop</string>
     <string name="lo_fi">"https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"</string>
     <string name="add">Add</string>
+    <string name="home_fragment_text">In this page you can view your daily tasks. Pressing on the plus button you can create a new task to do for today. By clicking in the modify button of the task you can update ,delete  or complete it. The completed tasks are in the lower parte ot the screen. </string>
+    <string name="calendar_fragment_text">In this page you can see your calendar and the tasks you have for each day. Organize yourself adding new tasks through the add task button. Stay OrganizD , stay Foolish </string>
+    <string name="pomodoro_fragment_text">In this page you can do classic pomodoro: 25 minutes of work and 5 minutes of rest. Stay focused and get some work done!</string>
+    <string name="profile_fragment_text">In this page you will see your progress within the app . You can see your level. Try tu surpass your limits!!!</string>
+    <string name="credits_fragment_text">OrganizD is an app developed by Andrea Tassi and Endri Sefa, two students of Università Politecnica delle Marche.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
