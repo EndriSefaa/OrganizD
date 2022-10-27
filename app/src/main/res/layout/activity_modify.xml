@@ -6,31 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ModifyActivity">
 
-    <Button
+    <ImageView
         android:id="@+id/buttonBack"
-        android:layout_width="86dp"
-        android:layout_height="54dp"
-        android:text="Back"
-        android:textColor="@color/black"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="109dp"
-        android:layout_height="51dp"
-        android:text="Cancel"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/ic_back" />
 
     <EditText
         android:id="@+id/editTextTaskName"
@@ -52,36 +38,40 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:timePickerMode="spinner"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTaskName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskName"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FB4608"
         android:text="Update"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
+        app:layout_constraintVertical_bias="0.822" />
 
     <Button
         android:id="@+id/buttonComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4CC501"
         android:text="Complete"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintVertical_bias="0.822" />
 
     <TextView
         android:id="@+id/textView5"
@@ -96,4 +86,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.766" />
+
+    <ImageView
+        android:id="@+id/buttonCancel"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/ic_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>
