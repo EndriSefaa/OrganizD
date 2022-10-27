@@ -15,6 +15,7 @@ class TaskCalendarPastAdapter: RecyclerView.Adapter<TaskCalendarPastAdapter.Task
 
     class TaskCalendarViewHolder(row: View) : RecyclerView.ViewHolder(row){
         val taskView = row.findViewById<TextView>(R.id.taskName)
+        val timeView = row.findViewById<TextView>(R.id.textHour)
 
     }
 
@@ -36,6 +37,7 @@ class TaskCalendarPastAdapter: RecyclerView.Adapter<TaskCalendarPastAdapter.Task
     override fun onBindViewHolder(holder: TaskCalendarViewHolder, position: Int) {
         val currentTask = taskList[position]
         holder.taskView.text = currentTask.name
+        holder.timeView.text = currentTask.hour
 
     }
 

@@ -83,7 +83,12 @@ class ModifyActivity : AppCompatActivity() {
         binding.buttonComplete.setOnClickListener {
             val taskName = binding.editTextTaskName.text.toString()
             val hour = binding.timePicker1.hour.toString()
-            val minutes = binding.timePicker1.minute.toString()
+            var minutes = binding.timePicker1.minute.toString()
+            println(hour)
+            println(minutes)
+            if (minutes.length == 1){
+                minutes = "0" + minutes
+            }
             val orario: String = hour + ":" + minutes
             val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, true)
             taskViewModel.update(task)
@@ -110,7 +115,12 @@ class ModifyActivity : AppCompatActivity() {
 
         val taskName = binding.editTextTaskName.text.toString()
         val hour = binding.timePicker1.hour.toString()
-        val minutes = binding.timePicker1.minute.toString()
+        var minutes = binding.timePicker1.minute.toString()
+        println(hour)
+        println(minutes)
+        if (minutes.length == 1){
+            minutes = "0" + minutes
+        }
         val orario: String = hour + ":" + minutes
 
         if (inputCheck(hour, minutes, taskName)){
@@ -119,7 +129,7 @@ class ModifyActivity : AppCompatActivity() {
             taskViewModel.update(task)
             Toast.makeText(
                 this,
-                "Task Added",
+                "Task Updated",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -139,6 +149,8 @@ class ModifyActivity : AppCompatActivity() {
         val mf = SimpleDateFormat("mm")
         val currentHour = hf.format(Date()).toString()
         val currentMinutes = mf.format(Date()).toString()
+        println("MInuti Correnti:  " +currentMinutes )
+        println("MInuti counter:  " + minutes )
 
         if((currentHour == hour && currentMinutes > minutes) || (currentHour > hour) ){
             Toast.makeText(

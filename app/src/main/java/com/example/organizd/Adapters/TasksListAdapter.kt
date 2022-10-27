@@ -24,6 +24,7 @@ class TasksListAdapter(private val onClick: (Task)-> Unit) : RecyclerView.Adapte
 
     class TaskViewHolder(row: View, val onClick: (Task) -> Unit) : RecyclerView.ViewHolder(row){
         val taskView = row.findViewById<TextView>(R.id.taskName)
+        val timeView = row.findViewById<TextView>(R.id.textHour)
         val imageView = row.findViewById<ImageView>(R.id.edit_button)
         private var currentTask: Task? = null
 
@@ -37,6 +38,8 @@ class TasksListAdapter(private val onClick: (Task)-> Unit) : RecyclerView.Adapte
         fun bind(task: Task){
             currentTask = task
             taskView.text = currentTask!!.name
+            timeView.text = currentTask!!.hour
+
 
 
         }
