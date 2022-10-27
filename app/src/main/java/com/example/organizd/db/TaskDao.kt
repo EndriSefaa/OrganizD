@@ -17,6 +17,9 @@ interface TaskDao {
     @Query("SELECT * FROM task_table WHERE date = :date AND completed = :completed  ORDER BY  hour ASC")
     fun  readDayDoneTasks(date: String, completed: Boolean): LiveData<List<Task>>
 
+    @Query("SELECT * FROM task_table WHERE date = :date   ORDER BY  hour ASC")
+    fun  readAllDayTasks(date: String): LiveData<List<Task>>
+
     @Query("SELECT * FROM task_table WHERE id = :id")
     fun  readSpecificTask(id: Int): Task
 

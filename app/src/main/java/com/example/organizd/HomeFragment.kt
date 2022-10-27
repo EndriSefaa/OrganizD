@@ -65,12 +65,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
 
-        taskViewModel.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+        taskViewModel.redAllDoData?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { task ->
             adapter.setData(task)
 
         })
 
-        taskViewModel.redAllDoneData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+        taskViewModel.redAllDoneData?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { task ->
             adapter2.setData(task)
 
         })

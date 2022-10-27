@@ -1,10 +1,12 @@
 package com.example.organizd
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +56,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         var taskViewModelFactory = TaskViewModelFactory(this.activity!!.application, date)
         taskViewModel = ViewModelProvider(this, taskViewModelFactory).get(TaskViewModel::class.java)
 
-        taskViewModel.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
+        taskViewModel.allTasks?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { task ->
             adapter.setData(task)
         })
 
@@ -68,19 +70,10 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
             binding.textCurrentDate.setText(date)
 
-            var adapter2 = TaskCalendarPastAdapter()
-            binding.recyclerViewCalendar.swapAdapter(adapter2, true);
-            binding.recyclerViewCalendar.adapter = adapter2
-            binding.recyclerViewCalendar.layoutManager = LinearLayoutManager(requireContext())
-            var taskViewModelFactory2 = TaskViewModelFactory(this.activity!!.application, date)
-            var taskViewModel2 = ViewModelProvider(this, taskViewModelFactory2).get(TaskViewModel::class.java)
-            println(taskViewModel2.redAllDoData)
-
-            taskViewModel2.redAllDoData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {  task ->
-                adapter2.setData(task)
+            taskViewModel.modifyTask(date)
+            taskViewModel.allTasks?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { task ->
+                adapter.setData(task)
             })
-
-
 
         })
 

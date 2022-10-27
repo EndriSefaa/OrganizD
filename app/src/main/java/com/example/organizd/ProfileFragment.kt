@@ -50,7 +50,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         // Switch tema scuro
 
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        when (resources.configuration.uiMode ) {
             Configuration.UI_MODE_NIGHT_YES -> { binding.themeSwitch.isChecked}
         }
 
@@ -74,22 +74,38 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
         var savedLevel = pref.getInt("LEVEL", 0)
-        binding.textLevel.setText(savedLevel.toString())
+        var notDone = pref.getInt("NOTDONE",0)
+        binding.textDone.text = "Tasks done: " + savedLevel.toString()
+
+
+        binding.textUndone.text = "Tasks not done: " + notDone.toString()
 
         when(savedLevel)
         {
-            in 0..9 -> Glide.with(this).load(R.drawable.level_0to9).into(binding.profileImage)
-            in 10..24 -> Glide.with(this).load(R.drawable.level_10to24).into(binding.profileImage)
-            in 25..49 -> Glide.with(this).load(R.drawable.level_25to49).into(binding.profileImage)
-            in 50..99 -> Glide.with(this).load(R.drawable.level_50to99).into(binding.profileImage)
-            in 100..199 -> Glide.with(this).load(R.drawable.level_100to199).into(binding.profileImage)
-            in 200..299 -> Glide.with(this).load(R.drawable.level_200to299).into(binding.profileImage)
-            in 300..499 -> Glide.with(this).load(R.drawable.level_300to499).into(binding.profileImage)
-            in 500..799 -> Glide.with(this).load(R.drawable.level_500to799).into(binding.profileImage)
-            in 800..1199 -> Glide.with(this).load(R.drawable.level_800to1199).into(binding.profileImage)
-            in 1200..1699 -> Glide.with(this).load(R.drawable.level_1200to1699).into(binding.profileImage)
-            in 1700..2299 -> Glide.with(this).load(R.drawable.level_1700to2299).into(binding.profileImage)
-            else -> Glide.with(this).load(R.drawable.level_3000).into(binding.profileImage)
+            in 0..9 -> {Glide.with(this).load(R.drawable.level_0to9).into(binding.profileImage)
+                        binding.textLevel.setText("1")}
+            in 10..24 -> {Glide.with(this).load(R.drawable.level_10to24).into(binding.profileImage)
+                binding.textLevel.setText("2")}
+            in 25..49 -> {Glide.with(this).load(R.drawable.level_25to49).into(binding.profileImage)
+                binding.textLevel.setText("3")}
+            in 50..99 -> {Glide.with(this).load(R.drawable.level_50to99).into(binding.profileImage)
+                binding.textLevel.setText("4")}
+            in 100..199 -> {Glide.with(this).load(R.drawable.level_100to199).into(binding.profileImage)
+                binding.textLevel.setText("5")}
+            in 200..299 -> {Glide.with(this).load(R.drawable.level_200to299).into(binding.profileImage)
+                binding.textLevel.setText("6")}
+            in 300..499 -> {Glide.with(this).load(R.drawable.level_300to499).into(binding.profileImage)
+                binding.textLevel.setText("7")}
+            in 500..799 -> {Glide.with(this).load(R.drawable.level_500to799).into(binding.profileImage)
+                binding.textLevel.setText("8")}
+            in 800..1199 -> {Glide.with(this).load(R.drawable.level_800to1199).into(binding.profileImage)
+                binding.textLevel.setText("9")}
+            in 1200..1699 -> {Glide.with(this).load(R.drawable.level_1200to1699).into(binding.profileImage)
+                binding.textLevel.setText("10")}
+            in 1700..2299 -> {Glide.with(this).load(R.drawable.level_1700to2299).into(binding.profileImage)
+                binding.textLevel.setText("11")}
+            else -> {Glide.with(this).load(R.drawable.level_3000).into(binding.profileImage)
+                binding.textLevel.setText("GOD")}
         }
 
 

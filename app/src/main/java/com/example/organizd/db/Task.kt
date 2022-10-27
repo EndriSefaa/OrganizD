@@ -5,11 +5,11 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "task_table")
-data class Task (
+data class Task(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val date : String,
-    val name : String,
+    val date: String,
+    val name: String,
     val hour: String,
-    val completed :  Boolean
+    val completed: Boolean
     )

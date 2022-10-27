@@ -49,4 +49,8 @@ class TaskCalendarPastAdapter: RecyclerView.Adapter<TaskCalendarPastAdapter.Task
     override fun getItemCount(): Int {
         return taskList.size
     }
+    fun clear(){
+        this.taskList = emptyList<Task>()
+        notifyDataSetChanged()
+    }
 }

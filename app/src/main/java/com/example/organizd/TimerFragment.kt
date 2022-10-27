@@ -137,15 +137,15 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
             sharedPref.edit().putInt("POMODAYCONT", erase).apply()
             sharedPref.edit().putString("LASTDAYUSE", currentDay).apply()
             pomoDayCont = sharedPref.getInt("POMODAYCONT", pomoDayCont)
-            binding.pomoDayContText.setText("Oggi hai completato: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
+            binding.pomoDayContText.setText("Pomodoro done today: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
         }
         else
         {
-            binding.pomoDayContText.setText("Oggi hai completato: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
+            binding.pomoDayContText.setText("Pomodoro done today: " + sharedPref.getInt("POMODAYCONT", pomoDayCont).toString() + " 🍅")
         }
 
         sharedPref.edit().putInt("POMOCONT", pomoCont)
-        binding.pomoContText.setText("Hai completato: " + sharedPref.getInt("POMOCONT", pomoCont).toString() + " 🍅")
+        binding.pomoContText.setText("All pomodoro: " + sharedPref.getInt("POMOCONT", pomoCont).toString() + " 🍅")
 
         // Funzione di verifica se il timer è partito (se non ci fosse, il tasto pausa al cambio di fragment tornerebbe a start anche se il timer è gia partito)
         verifyStartingTimer()

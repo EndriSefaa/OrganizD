@@ -1,5 +1,6 @@
 package com.example.organizd
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -7,17 +8,16 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.organizd.ViewModels.TaskViewModel
 import com.example.organizd.ViewModels.TaskViewModelFactory
-import com.example.organizd.databinding.ActivityAddBinding
 import com.example.organizd.databinding.ActivityAddNoTodayBinding
 import com.example.organizd.db.Task
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AddNoTodayActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddNoTodayBinding
     lateinit var app : String
     private lateinit var taskViewModel: TaskViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +69,11 @@ class AddNoTodayActivity : AppCompatActivity() {
 
             val task = Task(0, app, taskName,  orario, false)
             taskViewModel.addTask(task)
+
+            var pref = this.getSharedPreferences("pref", Context.MODE_PRIVATE)
+            var notDoneTask = pref.getInt("NOTDONE", 0)
+            notDoneTask++
+            pref.edit().putInt("NOTDONE", notDoneTask).apply()
             Toast.makeText(
                 this,
                 "Task Added",

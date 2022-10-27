@@ -3,14 +3,10 @@ package com.example.organizd
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.organizd.ViewModels.SpecificTaskViewModel
 import com.example.organizd.ViewModels.SpecificTaskViewModelFactory
-import com.example.organizd.ViewModels.TaskViewModel
-import com.example.organizd.ViewModels.TaskViewModelFactory
-import com.example.organizd.databinding.ActivityAddBinding
 import com.example.organizd.databinding.ActivityModifyBinding
 import com.example.organizd.db.Task
 import java.text.SimpleDateFormat
@@ -93,6 +89,10 @@ class ModifyActivity : AppCompatActivity() {
             val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, true)
             taskViewModel.update(task)
 
+
+            var notDoneTask = pref.getInt("NOTDONE", 0)
+            notDoneTask--
+            pref.edit().putInt("NOTDONE", notDoneTask).apply()
             savedLevel++
             pref.edit().putInt("LEVEL", savedLevel).apply()
             println(savedLevel)
