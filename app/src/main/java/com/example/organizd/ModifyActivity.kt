@@ -67,6 +67,9 @@ class ModifyActivity : AppCompatActivity() {
             val orario: String = hour + ":" + minutes
             val task = Task(app, taskViewModel.specificTask?.date ?: "", taskName,  orario, false)
             taskViewModel.delete(task)
+            var notDoneTask = pref.getInt("NOTDONE", 0)
+            notDoneTask--
+            pref.edit().putInt("NOTDONE", notDoneTask).apply()
 
             Toast.makeText(
                 this,

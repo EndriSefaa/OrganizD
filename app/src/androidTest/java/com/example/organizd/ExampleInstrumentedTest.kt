@@ -33,7 +33,7 @@ class ExampleInstrumentedTest {
 }
 
 @Suppress("DEPRECATION")
-@RunWith(AndroidJUnit4::class)
+
 class addTaskTest {
 
     private lateinit var taskDao: TaskDao
@@ -58,7 +58,7 @@ class addTaskTest {
 
     @Test
     @Throws(Exception::class)
-    suspend fun writeUserAndReadInList() : Unit{
+    suspend fun writeUserAndReadInList() {
         val task = Task(1, "today", "Study", "today", false)
         taskDao.addTask(task)
         val bydate = taskDao.readSpecificTask(1)
@@ -66,4 +66,15 @@ class addTaskTest {
         assert(bydate.name == task.name)
 
     }
+}
+
+@RunWith(AndroidJUnit4::class)
+class testView {
+    @Test
+    fun useAppContext() {
+
+
+        assertEquals(true , true)
+    }
+
 }

@@ -491,17 +491,17 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     // Funzione per l'assegnazione del nome e della cover del brano riprodotto
     private fun nameAndCoverSong(){
-        if(currentIndex == 0)
+        if(currentIndex % 3 == 0)
         {
             binding.textMusicName.setText("Jazz music")
             binding.coverImage.setImageResource(R.drawable.jazz_music_cover)
         }
-        if(currentIndex == 1)
+        if(currentIndex % 3 == 1)
         {
             binding.textMusicName.setText("LoFi HipHop music")
             binding.coverImage.setImageResource(R.drawable.lofi_cover)
         }
-        if(currentIndex == 2)
+        if(currentIndex % 3 == 2)
         {
             binding.textMusicName.setText("Classic music")
             binding.coverImage.setImageResource(R.drawable.classical_music_cover)
