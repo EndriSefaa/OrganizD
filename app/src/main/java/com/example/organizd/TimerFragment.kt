@@ -42,7 +42,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     //private val timer = Timer()
 
-    var start = 60000
+    var start = 10000
     var timerCountDown = start
     lateinit var countDownTimer: CountDownTimer
     var isStarting: Boolean = false // Variabile utilizzata per verificare se il timer sta scorrendo
@@ -151,8 +151,9 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         verifyStartingTimer()
 
         // Richiamo funzione per far partire il timer al click di start
-        onClickTimerCountdown()
-
+        if(isAdded) {
+            onClickTimerCountdown()
+        }
         println(minutsToMillis())
 
 
@@ -239,40 +240,39 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     private fun startCountdownTimer(){
         countDownTimer = object : CountDownTimer(timerCountDown.toLong(), 1000) {
             override fun onFinish() {
-                Toast.makeText(this@TimerFragment.requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
+                if(isAdded) {
+                    Toast.makeText(requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
 
-                playSoundNotification() // Richiamo funzione per avviso sonoro termine minutaggio
-
-                isStarting = false
-
-                if( !(start == 60000) )
-                {
-                    start = 60000 // 25min di lavoro
-                    binding.btnContdownStart.setText("Start")
-                    timerCountDown = start
-                    atRest = "No"
-                    setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
-                    binding.textAtWorkOrBreak.setText("🍅")
+                    playSoundNotification() // Richiamo funzione per avviso sonoro termine minutaggio
+                    }
                     isStarting = false
-                    savePomoInSharedPref() // Salvataggio del ciclo pomodoro
 
-                    // Salvo il giorno in cui premo start per far partire il timer
-                    lastDayUse = day.get(Calendar.DAY_OF_MONTH).toString()
-                    sharedPref.edit().putString("LASTDAYUSE", lastDayUse)
+                    if (!(start == 10000)) {
+                        start = 10000 // 25min di lavoro
+                        binding.btnContdownStart.setText("Start")
+                        timerCountDown = start
+                        atRest = "No"
+                        setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
+                        binding.textAtWorkOrBreak.setText("🍅")
+                        isStarting = false
+                        savePomoInSharedPref() // Salvataggio del ciclo pomodoro
 
-                    // Richiamo funzione per salvare i pomodori giornalieri
-                    savePomoDayInSharedPref()
-                }
-                else
-                {
-                    start = 20000 // 5min di pausa
-                    binding.btnContdownStart.setText("Start")
-                    timerCountDown = start
-                    atRest = "Yes"
-                    binding.textAtWorkOrBreak.setText("🍅")
-                    setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
-                    isStarting = false
-                }
+                        // Salvo il giorno in cui premo start per far partire il timer
+                        lastDayUse = day.get(Calendar.DAY_OF_MONTH).toString()
+                        sharedPref.edit().putString("LASTDAYUSE", lastDayUse)
+
+                        // Richiamo funzione per salvare i pomodori giornalieri
+                        savePomoDayInSharedPref()
+                    } else {
+                        start = 5000 // 5min di pausa
+                        binding.btnContdownStart.setText("Start")
+                        timerCountDown = start
+                        atRest = "Yes"
+                        binding.textAtWorkOrBreak.setText("🍅")
+                        setTextTimer() // Appena il tempo finisce, setto a schermo il minutaggio successivo
+                        isStarting = false
+                    }
+
 
             }
 
@@ -309,7 +309,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     {
         val notification: Uri =
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val r = RingtoneManager.getRingtone(this@TimerFragment.requireActivity(), notification)
+        val r = RingtoneManager.getRingtone(requireActivity(), notification)
         r.play()
     }
 
