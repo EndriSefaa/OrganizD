@@ -62,65 +62,19 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return inflater.inflate(R.layout.fragment_timer, container, false)
 
         sharedPref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
 
-        val mNotificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         binding = FragmentTimerBinding.inflate(layoutInflater)
         val view = binding.root
 
-        //dataHelper = DataHelper(requireActivity()) // Non posso inserire nelle parentesi (applicationContext) poiché mi trovo in un fragment.
 
-        /*
-        binding.startButton.setOnClickListener{ startStopAction() }
-        binding.resetButton.setOnClickListener{ resetAction() }
-
-        if(dataHelper.timerCounting())
-        {
-            startTimer()
-        }
-        else
-        {
-            stopTimer()
-            if(dataHelper.startTime() != null && dataHelper.stopTime() != null)
-            {
-                val time = Date().time - calcRestartTime().time
-                binding.timeTV.text = timeStringFromLong(time)
-            }
-        }
-
-
-        // Aggiornamento costante della vista
-        timer.scheduleAtFixedRate(TimeTask(), 0, 500) // Ritardo nell'aggiornamento pari a zero e controlleremo ogni mezzo secondo.
-        */
-
-        // Info toast
-        binding.infoIcon.setOnClickListener{
-            Toast.makeText(this@TimerFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
-        }
-
-
-        
-        // Prova attivazione modalità non disturbare.
-
-        binding.switchNotDisturb.setOnCheckedChangeListener{ buttonView, isChecked ->
-
-            if(isChecked)
-            {
-                if (!mNotificationManager.isNotificationPolicyAccessGranted) {
-                    val intent = Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
-                    startActivity(intent)
-                }
-            }
-
-        }
 
         // Richiamo funzione player
         musicPlayer()
 
-        // Setto a schermo il minutazzio
+        // Setto a schermo il minutaggio
         setTextTimer()
 
 

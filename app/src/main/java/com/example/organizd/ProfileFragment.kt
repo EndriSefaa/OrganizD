@@ -1,13 +1,16 @@
 package com.example.organizd
 
 import android.app.Dialog
+import android.app.NotificationManager
 import android.app.UiModeManager.MODE_NIGHT_NO
 import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.Settings
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -48,30 +51,34 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
 
-        // Switch tema scuro
 
-        when (resources.configuration.uiMode ) {
-            Configuration.UI_MODE_NIGHT_YES -> { binding.themeSwitch.isChecked}
+
+        // Info toast
+        binding.infoIcon.setOnClickListener{
+            Toast.makeText(this@ProfileFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
         }
 
 
-        binding.themeSwitch.setOnCheckedChangeListener{ buttonView, isChecked ->
+        // Prova attivazione modalità non disturbare.
+        val mNotificationManager = activity!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        binding.switchNotDisturb.setOnCheckedChangeListener{ buttonView, isChecked ->
 
             if(isChecked)
             {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-            }
-            else
-            {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                if (!mNotificationManager.isNotificationPolicyAccessGranted) {
+                    val intent = Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
+                    startActivity(intent)
+                }
             }
 
         }
+
+
 
 
 
         // Assegnazione immagine profilo in base al livello
-
 
         var savedLevel = pref.getInt("LEVEL", 0)
         var notDone = pref.getInt("NOTDONE",0)
