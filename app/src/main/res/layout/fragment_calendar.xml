@@ -37,29 +37,31 @@
 
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tasks of:"
+        android:id="@+id/textCurrentDate"
+        android:layout_width="126dp"
+        android:layout_height="19dp"
+        android:text="CurrentDate"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.646" />
 
     <TextView
-        android:id="@+id/textCurrentDate"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CurrentDate"
+        android:text="Tasks of:"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.646" />
@@ -69,7 +71,8 @@
         android:layout_width="364dp"
         android:layout_height="344dp"
         android:background="@drawable/calendar_view_theme"
-        android:focusedMonthDateColor="#5248fe"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -83,10 +86,9 @@
         android:layout_height="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <Button
         android:id="@+id/button"
@@ -106,14 +108,14 @@
         android:id="@+id/infoButton"
         android:layout_width="38dp"
         android:layout_height="36dp"
-        android:tint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
-        app:srcCompat="@drawable/info_icon" />
+        app:srcCompat="@drawable/info_icon"
+        app:tint="#000000" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

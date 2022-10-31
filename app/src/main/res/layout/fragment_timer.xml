@@ -13,78 +13,33 @@
         android:id="@+id/infoButton"
         android:layout_width="38dp"
         android:layout_height="36dp"
-        android:tint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053"
-        app:srcCompat="@drawable/info_icon" />
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/info_icon"
+        app:tint="#000000" />
+
+
 
     <TextView
         android:id="@+id/tvTimerFragment"
-        android:layout_width="273dp"
-        android:layout_height="57dp"
+        android:layout_width="317dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         android:text="Timer"
         android:textColor="@color/black"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-
-    <!--
-    <TextView
-        android:id="@+id/timeTV"
-        android:layout_width="235dp"
-        android:layout_height="75dp"
-        android:text="@string/place_holder_time"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
-    -->
-
-    <!--
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#985EFF"
-        android:text="@string/start"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
-        android:id="@+id/resetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#985EFF"
-        android:text="@string/reset"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
-
-    -->
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/pomoContText"
@@ -116,8 +71,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="410dp"
-        android:layout_height="256dp"
+        android:layout_width="359dp"
+        android:layout_height="257dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -125,10 +80,10 @@
         android:background="@drawable/round_corner_player"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.700"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.9" />
 
 
     <LinearLayout
@@ -143,7 +98,7 @@
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.839">
+        app:layout_constraintVertical_bias="0.751">
 
 
         <ImageView
@@ -178,28 +133,28 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="346dp"
-        android:layout_height="28dp"
+        android:layout_width="307dp"
+        android:layout_height="29dp"
         android:progressTint="#F1613E"
         android:thumbTint="#fc3605"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.917" />
 
     <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="46dp"
         android:layout_height="34dp"
         android:background="@drawable/button_player_style"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"
+        app:layout_constraintVertical_bias="0.853"
         app:srcCompat="@drawable/ic_play" />
 
     <ImageButton
@@ -209,10 +164,10 @@
         android:background="@drawable/button_player_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintHorizontal_bias="0.649"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915"
+        app:layout_constraintVertical_bias="0.853"
         app:srcCompat="@drawable/ic_next" />
 
     <ImageButton
@@ -220,14 +175,13 @@
         android:layout_width="53dp"
         android:layout_height="34dp"
         android:background="@drawable/button_player_style"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.321"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"
+        app:layout_constraintVertical_bias="0.853"
         app:srcCompat="@drawable/ic_previous" />
-
 
     <LinearLayout
         android:layout_width="332dp"

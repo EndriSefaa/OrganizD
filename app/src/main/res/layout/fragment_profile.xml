@@ -11,14 +11,14 @@
         android:id="@+id/infoButton"
         android:layout_width="38dp"
         android:layout_height="36dp"
-        android:tint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057"
-        app:srcCompat="@drawable/info_icon" />
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/info_icon"
+        app:tint="#000000" />
 
     <TextView
         android:id="@+id/tvProfileFragment"
@@ -56,7 +56,6 @@
         android:id="@+id/switchNotDisturb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
         android:text="Total focus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,27 +68,27 @@
         android:id="@+id/infoIcon"
         android:layout_width="24dp"
         android:layout_height="28dp"
-        android:tint="#6666FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.608"
-        app:srcCompat="@drawable/info_icon" />
+        app:srcCompat="@drawable/info_icon"
+        app:tint="#6666FF" />
 
     <ImageView
         android:id="@+id/infoIconLevel"
         android:layout_width="21dp"
         android:layout_height="22dp"
-        android:tint="#6666FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.297"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.289"
-        app:srcCompat="@drawable/info_icon" />
+        app:srcCompat="@drawable/info_icon"
+        app:tint="#6666FF" />
 
 
     <TextView

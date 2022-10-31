@@ -42,7 +42,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
 
     //private val timer = Timer()
 
-    var start = 10000
+    var start = 1500000 // 25min di lavoro
     var timerCountDown = start
     lateinit var countDownTimer: CountDownTimer
     var isStarting: Boolean = false // Variabile utilizzata per verificare se il timer sta scorrendo
@@ -195,14 +195,14 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
         countDownTimer = object : CountDownTimer(timerCountDown.toLong(), 1000) {
             override fun onFinish() {
                 if(isAdded) {
-                    Toast.makeText(requireActivity(), "End timer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "🍅End timer🍅", Toast.LENGTH_SHORT).show()
 
                     playSoundNotification() // Richiamo funzione per avviso sonoro termine minutaggio
                     }
                     isStarting = false
 
-                    if (!(start == 10000)) {
-                        start = 10000 // 25min di lavoro
+                    if (!(start == 1500000)) {
+                        start = 1500000 // 25min di lavoro
                         binding.btnContdownStart.setText("Start")
                         timerCountDown = start
                         atRest = "No"
@@ -218,7 +218,7 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
                         // Richiamo funzione per salvare i pomodori giornalieri
                         savePomoDayInSharedPref()
                     } else {
-                        start = 5000 // 5min di pausa
+                        start = 300000 // 5min di pausa
                         binding.btnContdownStart.setText("Start")
                         timerCountDown = start
                         atRest = "Yes"

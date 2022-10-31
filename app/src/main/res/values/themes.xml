@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.OrganizD" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#F5F5F5</item>
+        <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryVariant">#C2C2C2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

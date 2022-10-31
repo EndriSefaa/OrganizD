@@ -27,7 +27,8 @@
                 android:text="Profile"
                 android:textColor="@color/black"
                 android:textSize="25dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold">
+            </TextView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,7 +47,8 @@
                     android:paddingBottom="20dp"
                     android:text="@string/profile_fragment_text"
                     android:textColor="#000000"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="15sp">
+                </TextView>
             </RelativeLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

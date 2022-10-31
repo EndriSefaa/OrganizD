@@ -6,6 +6,7 @@ import android.app.UiModeManager.MODE_NIGHT_NO
 import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -25,8 +26,8 @@ import com.example.organizd.databinding.FragmentProfileBinding
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     lateinit var binding: FragmentProfileBinding
-    //lateinit var edt1: EditText
-    lateinit var testo: String
+
+    lateinit var pref: SharedPreferences // SharedPreferences utilizzata poi per memorizzare il nome.
 
 
     override fun onCreateView(
@@ -38,9 +39,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding = FragmentProfileBinding.inflate(inflater)
         val view = binding.root
 
-        // ++++++++ Dichiarazione SharedPreferences per nome utente +++++++++
-        var pref = this@ProfileFragment.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        // ++++++++ Inizializzazione SharedPreferences per nome utente +++++++++
+        pref = this@ProfileFragment.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
         var SavedName = pref.getString("NICKNAME", "")
+        print("Il nome: " + SavedName)
         binding.MyName.setText(SavedName)
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -55,7 +57,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         // Info toast
         binding.infoIcon.setOnClickListener{
-            Toast.makeText(this@ProfileFragment.requireActivity(), "La funzione total focus permette di silenziare qualunque notifica per migliorare la tua concentrazione.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ProfileFragment.requireActivity(), "The total focus function allows you to silence any notification to improve your concentration.", Toast.LENGTH_LONG).show()
         }
 
 
@@ -123,7 +125,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
                 var NickName: String = binding.MyName.getText().toString().trim()
 
-                pref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
                 pref.edit().putString("NICKNAME", NickName).apply()
 
                 SavedName = pref.getString("NICKNAME", "")
