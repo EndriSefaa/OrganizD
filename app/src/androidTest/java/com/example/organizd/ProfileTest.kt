@@ -103,6 +103,63 @@ class ProfileTest {
         )
         bottomNavigationItemView2.perform(click())
 
+        val bottomNavigationItemView3 = onView(
+            allOf(
+                withId(R.id.myProfile), withContentDescription("Profile"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottomNavigationView),
+                        0
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        bottomNavigationItemView3.perform(click())
+
+        val textView = onView(
+            allOf(
+                withId(R.id.textDone), withText("Tasks done: 0"),
+                withParent(withParent(withId(R.id.flFragment))),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("Tasks done: 0")))
+
+        val textView2 = onView(
+            allOf(
+                withId(R.id.textUndone), withText("Tasks not done: 1"),
+                withParent(withParent(withId(R.id.flFragment))),
+                isDisplayed()
+            )
+        )
+        textView2.check(matches(withText("Tasks not done: 1")))
+
+        val textView3 = onView(
+            allOf(
+                withId(R.id.textUndone), withText("Tasks not done: 1"),
+                withParent(withParent(withId(R.id.flFragment))),
+                isDisplayed()
+            )
+        )
+        textView3.check(matches(withText("Tasks not done: 1")))
+
+        val bottomNavigationItemView4 = onView(
+            allOf(
+                withId(R.id.myHome), withContentDescription("Home"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottomNavigationView),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        bottomNavigationItemView4.perform(click())
+
         val appCompatImageButton = onView(
             allOf(
                 withId(R.id.edit_button),
@@ -133,7 +190,7 @@ class ProfileTest {
         )
         materialButton3.perform(click())
 
-        val bottomNavigationItemView3 = onView(
+        val bottomNavigationItemView5 = onView(
             allOf(
                 withId(R.id.myProfile), withContentDescription("Profile"),
                 childAtPosition(
@@ -146,25 +203,34 @@ class ProfileTest {
                 isDisplayed()
             )
         )
-        bottomNavigationItemView3.perform(click())
+        bottomNavigationItemView5.perform(click())
 
-        val textView = onView(
+        val textView4 = onView(
             allOf(
                 withId(R.id.textDone), withText("Tasks done: 1"),
                 withParent(withParent(withId(R.id.flFragment))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Tasks done: 1")))
+        textView4.check(matches(withText("Tasks done: 1")))
 
-        val textView2 = onView(
+        val textView5 = onView(
             allOf(
-                withId(R.id.textDone), withText("Tasks done: 1"),
+                withId(R.id.textUndone), withText("Tasks not done: 0"),
                 withParent(withParent(withId(R.id.flFragment))),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Tasks done: 1")))
+        textView5.check(matches(withText("Tasks not done: 0")))
+
+        val textView6 = onView(
+            allOf(
+                withId(R.id.textUndone), withText("Tasks not done: 0"),
+                withParent(withParent(withId(R.id.flFragment))),
+                isDisplayed()
+            )
+        )
+        textView6.check(matches(withText("Tasks not done: 0")))
     }
 
     private fun childAtPosition(
