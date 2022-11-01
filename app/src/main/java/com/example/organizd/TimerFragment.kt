@@ -243,8 +243,12 @@ class TimerFragment : Fragment(R.layout.fragment_timer) {
     }
 
     private fun restartCountdownTimer(){
-        countDownTimer.cancel()
-        timerCountDown = start
+        // Verifico subito se countDownTimer sia inizializzata
+        if(this::countDownTimer.isInitialized){
+            countDownTimer.cancel()
+            timerCountDown = start
+        }
+        isStarting = false
         setTextTimer()
     }
 
