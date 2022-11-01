@@ -103,8 +103,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.Data.text = formattedDate
 
-        swipeToDelete()
-
         binding.infoButton.setOnClickListener{
             val  dialogBinding = layoutInflater.inflate(R.layout.home_dialog, null)
 
@@ -119,37 +117,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
 
-    // Funzione di swipe per rimuovere le task
-
-    private fun swipeToDelete()
-    {
-
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return true
-            }
-
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-                val position = viewHolder.adapterPosition
-
-
-
-                Toast.makeText(this@HomeFragment.requireActivity(), "Task completed.", Toast.LENGTH_LONG)
-            }
-
-
-        }).attachToRecyclerView(binding.recyclerView)
-
-    }
 
     override fun onCreateContextMenu(
         menu: ContextMenu,
