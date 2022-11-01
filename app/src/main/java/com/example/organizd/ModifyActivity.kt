@@ -152,8 +152,6 @@ class ModifyActivity : AppCompatActivity() {
         val mf = SimpleDateFormat("mm")
         val currentHour = hf.format(Date()).toString()
         val currentMinutes = mf.format(Date()).toString()
-        println("MInuti Correnti:  " +currentMinutes )
-        println("MInuti counter:  " + minutes )
 
         if((currentHour == hour && currentMinutes > minutes) || (currentHour > hour) ){
             Toast.makeText(

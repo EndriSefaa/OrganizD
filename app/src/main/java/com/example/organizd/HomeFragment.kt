@@ -117,29 +117,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
 
-
-    override fun onCreateContextMenu(
-        menu: ContextMenu,
-        v: View,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        menu.setHeaderTitle("Pick option")
-        requireActivity().menuInflater.inflate(R.menu.task_menu, menu)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.modify -> {
-
-            }
-            R.id.cancel -> {
-
-            }
-        }
-        return super.onContextItemSelected(item)
-    }
-
     private fun adapterOnClick(task: Task){
         val intent = Intent(this.context, ModifyActivity()::class.java)
         intent.putExtra("EXTRA_ID", task.id)
