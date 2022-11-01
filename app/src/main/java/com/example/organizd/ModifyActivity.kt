@@ -117,12 +117,15 @@ class ModifyActivity : AppCompatActivity() {
     private fun insertToDatabase(){
 
         val taskName = binding.editTextTaskName.text.toString()
-        val hour = binding.timePicker1.hour.toString()
+        var hour = binding.timePicker1.hour.toString()
         var minutes = binding.timePicker1.minute.toString()
         println(hour)
         println(minutes)
         if (minutes.length == 1){
             minutes = "0" + minutes
+        }
+        if (hour.length == 1){
+            hour = "0" + hour
         }
         val orario: String = hour + ":" + minutes
 
