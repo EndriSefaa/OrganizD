@@ -16,8 +16,9 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="259dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
@@ -27,8 +28,7 @@
                 android:text="Profile"
                 android:textColor="@color/black"
                 android:textSize="25dp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -47,9 +47,36 @@
                     android:paddingBottom="20dp"
                     android:text="@string/profile_fragment_text"
                     android:textColor="#000000"
-                    android:textSize="15sp">
-                </TextView>
+                    android:textSize="15sp"></TextView>
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
