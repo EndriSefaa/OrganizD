@@ -54,12 +54,6 @@ class TasksListAdapter(private val onClick: (Task)-> Unit) : RecyclerView.Adapte
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_todo, parent, false)
         val holder = TaskViewHolder(layout, onClick)
-        holder.taskView.setOnClickListener {
-            Snackbar.make(parent.rootView, "Click!", Snackbar.LENGTH_SHORT).show()
-        }
-
-
-
         return holder
     }
 
@@ -68,7 +62,6 @@ class TasksListAdapter(private val onClick: (Task)-> Unit) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = taskList[position]
         holder.bind(currentTask)
-
     }
 
     fun setData(task: List<Task>){

@@ -26,11 +26,6 @@ class TaskCalendarPastAdapter: RecyclerView.Adapter<TaskCalendarPastAdapter.Task
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_calendar_done, parent, false)
         val holder = TaskCalendarViewHolder(layout)
-        holder.taskView.setOnClickListener {
-            Snackbar.make(parent.rootView, "Click!", Snackbar.LENGTH_SHORT).show()
-        }
-
-
         return holder
     }
 

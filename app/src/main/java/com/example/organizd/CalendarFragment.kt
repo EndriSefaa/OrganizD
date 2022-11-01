@@ -83,7 +83,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             if (!checkDate(currentDate.toString() , date)){
                 Toast.makeText(
                     this.requireContext(),
-                    "Time selected is not correct. Select new time",
+                    "Date selected is not correct. Please, select new date",
                     Toast.LENGTH_SHORT
                 ).show()
             }

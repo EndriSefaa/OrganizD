@@ -82,8 +82,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCalendar"
-        android:layout_width="361dp"
-        android:layout_height="176dp"
+        android:layout_width="369dp"
+        android:layout_height="162dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

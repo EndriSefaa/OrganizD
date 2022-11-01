@@ -16,6 +16,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -57,7 +58,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         // Info toast
         binding.infoIcon.setOnClickListener{
-            Toast.makeText(this@ProfileFragment.requireActivity(), "The total focus function allows you to silence any notification to improve your concentration.", Toast.LENGTH_LONG).show()
+            val  dialogBinding = layoutInflater.inflate(R.layout.focus_dialog, null)
+
+            val myDialog = Dialog(requireContext())
+            myDialog.setContentView(dialogBinding)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+            myDialog.show()
         }
 
 

@@ -9,9 +9,6 @@
         android:background="@color/white"
         app:cardCornerRadius="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -24,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:text="Profile"
+                android:text="Total focus"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold"></TextView>
@@ -44,11 +41,10 @@
                     android:paddingEnd="20dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="20dp"
-                    android:text="@string/profile_fragment_text"
+                    android:text="@string/focus_fragment_text"
                     android:textColor="#000000"
                     android:textSize="15dp"></TextView>
             </RelativeLayout>
-
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
