@@ -11,7 +11,7 @@
     <string name="pomodoro_fragment_text">On this page you can use the Pomodoro timer, with 25 minutes of work and a 5 minute break. If you want you can also listen to 3 pleasant background music. Get some tasks done 💪!</string>
     <string name="profile_fragment_text">On this page you will see your progress within the app. You can see your level based on the completed tasks, you can customize your name and you can set the phone in total focus mode. Try to overcome your limits !!!</string>
     <string name="credits_fragment_text">OrganizD is an app developed by Andrea Tassi and Endri Sefa, two students of Università Politecnica delle Marche. We are : EndriSefa and GitAndreaHub on GitHub. Check our profiles!</string>
-    <string name="focus_fragment_text">The total focus function allows you to silence any notification to improve your concentration. Activate it to put the phone into "Do not disturb" mode</string>
+    <string name="focus_fragment_text">The total focus function allows you to silence any notification to improve your concentration. Activate it to put the phone into "Do not disturb" mode.</string>
 
     <string name="endriLink"><a href="https://github.com/EndriSefa">Endri GitHub profile</a></string>
     <string name="andreaLink"><a href="https://github.com/GitAndreaHub">Andrea GitHub profile</a></string>

@@ -77,19 +77,6 @@
         app:srcCompat="@drawable/info_icon"
         app:tint="#6666FF" />
 
-    <ImageView
-        android:id="@+id/infoIconLevel"
-        android:layout_width="21dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.297"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289"
-        app:srcCompat="@drawable/info_icon"
-        app:tint="#6666FF" />
-
 
     <TextView
         android:id="@+id/textView4"
@@ -110,10 +97,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.549" />
 
+
     <TextView
         android:id="@+id/textLevel"
-        android:layout_width="71dp"
-        android:layout_height="55dp"
+        android:layout_width="96dp"
+        android:layout_height="53dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -124,11 +112,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.321" />
-
 
     <View
         android:id="@+id/view2"

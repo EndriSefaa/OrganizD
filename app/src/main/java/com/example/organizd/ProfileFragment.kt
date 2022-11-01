@@ -48,13 +48,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-        // Toast info livello
-        binding.infoIconLevel.setOnClickListener{
-            Toast.makeText(this@ProfileFragment.requireActivity(), "The level corresponds to the completed tasks.", Toast.LENGTH_SHORT).show()
-        }
-
-
-
 
         // Info toast
         binding.infoIcon.setOnClickListener{
