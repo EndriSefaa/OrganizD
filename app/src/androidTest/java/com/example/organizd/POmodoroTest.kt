@@ -57,7 +57,7 @@ class POmodoroTest {
             )
         )
         materialButton.perform(click())
-
+        Thread.sleep(1505_000)
         val materialButton2 = onView(
             allOf(
                 withId(R.id.btnContdownStart), withText("Start"),
@@ -72,7 +72,7 @@ class POmodoroTest {
             )
         )
         materialButton2.perform(click())
-
+        Thread.sleep(310_000)
         val textView = onView(
             allOf(
                 withId(R.id.pomoDayContText), withText("Oggi hai completato: 1 \uD83C\uDF45"),
