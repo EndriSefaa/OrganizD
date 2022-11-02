@@ -24,7 +24,7 @@
         android:layout_height="51dp"
         android:ems="10"
         android:hint="To do"
-
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

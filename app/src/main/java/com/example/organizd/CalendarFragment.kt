@@ -64,7 +64,28 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
         binding.calendarView.setOnDateChangeListener(CalendarView.OnDateChangeListener{view, year, month, dayOfMonth ->
 
-            date = (dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+
+             // controlli sulla data: se a cifra singola aggiungiamo uno 0 avanti per
+            // avere un formato unico
+            var mese = month + 1
+            // mese e giorno a cifra singola
+            if(dayOfMonth.toString().length == 1 && mese.toString().length == 1){
+                date = ("0" + dayOfMonth.toString() + "-0" + (month + 1) + "-" + year)
+            }
+            // giorno a cifra singola
+            else if(dayOfMonth.toString().length == 1 && mese.toString().length == 2){
+                date = ("0" + dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+            }
+            //mese a cifra singola
+            else  if(dayOfMonth.toString().length == 2 && mese.toString().length == 1){
+                date = ("" + dayOfMonth.toString() + "-0" + (month + 1) + "-" + year)
+            }
+            // entrambi a cifra doppia
+            else{
+                date = (dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+            }
+
+
 
 
 
