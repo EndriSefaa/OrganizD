@@ -185,7 +185,6 @@
         android:background="@android:color/transparent"
         android:inputType="text"
         android:text="My name️"
-        android:imeOptions="actionDone"
         android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold"
